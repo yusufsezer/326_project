@@ -10,6 +10,3 @@ this repository:
   requested as part of the submission.
 * `src` - this folder is used for your project code.
 
-Please read the [markdown
-cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
-to help you author documents using markdown.
