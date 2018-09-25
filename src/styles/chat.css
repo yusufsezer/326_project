@@ -1,0 +1,37 @@
+.header {
+    text-align: center;
+}
+.team-name {
+    font-size: 30px;
+}
+.members-list{
+    list-style-type: none;
+    padding-left: 0;
+}
+.member{
+    border: 1px dashed purple;
+    margin-bottom: 15px;
+    background: lavender;
+    border-radius: 5px;
+}
+.member-name {
+    font-size: 20px;
+    margin-bottom: 0;
+    padding-left: 5px;
+}
+.username {
+    font-size: 15;
+    color: gray;
+    margin-bottom: 0;
+    padding-left: 5px;
+}
+.img {
+    height: 30px;
+    width: 30px;
+    margin-top: -6px;
+    border-radius: 3px;
+}
+#member-list {
+    height: 200px;
+    overflow: scroll;
+}
