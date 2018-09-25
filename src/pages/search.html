@@ -7,12 +7,12 @@
     <meta name="author" content="">
     <!-- <link rel="icon" href="../../../../favicon.ico"> -->
 
-    <title>Search - App Name</title>
+    <title>Find a Group - App Name</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
-    <!-- Custom styles for this template -->
+    <!-- Custom styles for this page -->
     <link href="../styles/search.css" rel="stylesheet">
   </head>
 
@@ -26,38 +26,92 @@
 
       <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Create Group</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">My Groups</a>
+          </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">Search <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Area 2</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Area 3</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Area 4</a>
+            <a class="nav-link" href="#">Find a Group <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings</a>
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Help</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
+              <a class="dropdown-item" href="#">About Us</a>
+              <a class="dropdown-item" href="#">Feedback</a>
             </div>
           </li>
         </ul>
-        <!-- <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form> -->
       </div>
     </nav>
 
     <main role="main" class="container">
       <div class="card my-3">
         <div class="card-body">
-          This is some sample text
+          <h3 class="mb-3">Find a group</h3>
+          <form>
+            <div class="form-group row">
+              <div class="col">
+                <label>Where do you want to play?</label>
+              </div>
+              <div class="col">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                  <label class="form-check-label" for="inlineRadio1">Online</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                  <label class="form-check-label" for="inlineRadio2">Local</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="searchInputLocation">Select a location:</label>
+              <select class="form-control" id="searchInputConsole">
+                <option>Select...</option>
+                <option>Southwest</option>
+                <option>Commonwealth Honors College</option>
+                <option>Northeast</option>
+                <option>Orchard Hill</option>
+                <option>Central</option>
+                <option>Center of Campus</option>
+                <option>Other...</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="searchInputKeywords">Keywords:</label>
+              <input type="text" class="form-control" id="searchInputKeywords" placeholder="Enter keywords">
+            </div>
+            <div class="form-group">
+              <label for="searchInputConsole">Select a console:</label>
+              <select class="form-control" id="searchInputConsole">
+                <option>Select...</option>
+                <option>Xbox One</option>
+                <option>Playstation 4</option>
+                <option>Nintendo Switch</option>
+                <option>PC</option>
+                <option>Xbox 360</option>
+                <option>Playstation 3</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="searchInputConsole">Select a game:</label>
+              <select class="form-control" id="searchInputConsole">
+                <option>Select...</option>
+                <option>Fortnite</option>
+                <option>Minecraft</option>
+                <option>Tetris</option>
+                <option>Monopoly</option>
+                <option>Overwatch</option>
+                <option>FIFA 2018</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+          </form>
         </div>
       </div>
     </main>
