@@ -1,0 +1,12 @@
+.navbar {
+	width: 100%;
+	height: 55px;
+	background: #D5A8D4;
+}
+.navbar-links {
+	width: 85%;
+	background: cornflowerblue;
+}
+.links-list {
+	list-style-type: none;
+}
