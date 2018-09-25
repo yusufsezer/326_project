@@ -1,0 +1,86 @@
+body {
+    background-color: #284168;
+}
+
+h1 {
+    font-size: 100px;
+    color: #b8c3d6;
+    margin: auto;
+    width: fit-content;
+    padding: 10px;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #5e6777;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #768296;
+}
+
+table, th, td{
+   border: 5px solid black;
+   border-collapse: collapse;
+   text-align: center;
+}
+
+th{
+  font-size: 30px;
+}
+td{
+  font-size: 25px;
+}
+
+.join_button{
+    background-color: #5fe835;
+    border: none;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    width: 100%;
+    height: 100px;
+}
+body {
+    background-color: #284168;
+}
+
+h1 {
+    font-size: 100px;
+    color: #b8c3d6;
+    margin: auto;
+    width: fit-content;
+    padding: 10px;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #5e6777;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #768296;
+}
+
+table, th, td{
+   border: 5px solid black;
+   border-collapse: collapse;
+   text-align: center;
+}
+
+th{
+  font-size: 30px;
+}
+td{
+  font-size: 25px;
+}
+
+.join_button{
+    background-color: #5fe835;
+    border: none;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    width: 100%;
+    height: 100px;
+}
