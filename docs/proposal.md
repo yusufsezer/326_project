@@ -25,6 +25,3 @@ The platform is based off of users creating gaming sessions that others can join
 
 Provide a description and images of the user interface your
 application will intend on supporting.
-
-![example image](imgs/chick.jpg)
-
