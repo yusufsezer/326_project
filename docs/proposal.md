@@ -26,8 +26,8 @@ The platform is based off of users creating gaming sessions that others can join
 Provide a description and images of the user interface your
 application will intend on supporting.
 
-![](imgs/HomePage.PNG)
-![](imgs/Search.png)
-![](imgs/SearchResults.png)
-![](imgs/SessionInfoChatPage.png)
-![](imgs/PostSessionPage.PNG)
+![Home Page](imgs/HomePage.PNG)
+![Search](imgs/Search.png)
+![Search Results](imgs/SearchResults.png)
+![Session Info Chat Page](imgs/SessionInfoChatPage.png)
+![Post Session Page](imgs/PostSessionPage.PNG)
