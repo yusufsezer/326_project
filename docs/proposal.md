@@ -8,6 +8,7 @@
 * Nithin Mahesh, NithinMahesh1
 * Navin Lal, nlal43
 * Rudy Pikulik, RudyPikulik
+* Christopher Rybicki, Chriscbr
 * Panav Setia, PanavSetia
 
 # Innovative Idea
