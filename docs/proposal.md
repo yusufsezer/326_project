@@ -8,6 +8,7 @@
 * Nithin Mahesh, NithinMahesh1
 * Navin Lal, nlal43
 * Rudy Pikulik, RudyPikulik
+* Christopher Rybicki, Chriscbr
 * Panav Setia, PanavSetia
 
 # Innovative Idea
@@ -23,8 +24,29 @@ The platform is based off of users creating gaming sessions that others can join
 
 # User Interface
 
-Provide a description and images of the user interface your
-application will intend on supporting.
+Below is a list of 5 of our application's pages including descriptions and screenshots:
 
-![example image](imgs/chick.jpg)
+* Home Page
+	* Contains two buttons to join a local or online party, and gives descriptions of both. It also has images and text describing and promoting popular games. All of this is formatted using bootstrap.
 
+![Home Page](imgs/HomePage.PNG)
+
+* Search for group/session page
+	* Contains search fields for all of the information collected in the create session page. It includes region, keywords, console, and game. Similar to the create session page, there are dropdowns with common options. There is also two switch buttons to determine an online vs. local search.
+
+![Search](imgs/Search.png)
+
+* Search results page
+	* Shows groups that match with your search criteria ranked by distance. The table shows data such as distance, platform, game, group size and members, and a button to join the group. The table is formatted with bootstrap.
+
+![Search Results](imgs/SearchResults.png)
+
+* Group/session page with chat with paired gamers
+	* Once a user has matched with a session, the team members are listed in a scrollable card. A chat section is also displayed, allowing team members to communicate. This shows time of message and message text. Other team information, if available, will be shown on this screen. 
+
+![Session Info Chat Page](imgs/SessionInfoChatPage.png)
+
+* Create group/session page
+	* Shows the user a form with all the information needed in order to create a session. There content includes session name, online region, keywords, console, and game. These are all accompanied by drop down menus from bootstrap with common options. There will be “Other” as an option as well. 
+
+![Post Session Page](imgs/PostSessionPage.PNG)
