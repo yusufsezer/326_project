@@ -23,7 +23,7 @@ def index(request):
     }
 
     # Render the HTML template index.html with the data in the context variable
-    return HttpResponse("Hello, World!")
+    return render(request, "index.html", context=context)
 
 def events(request):
     """View function for events page of site."""
