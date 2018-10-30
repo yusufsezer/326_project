@@ -19,11 +19,16 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from django.views.generic import RedirectView
+from PlayWithMe import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', include('PlayWithMe.urls')),
     path('', RedirectView.as_view(url='/home/')),
+    path('search/', views.search),
+    path('results/', views.results),
+    path('chat/', views.chat),
+    path('post_session/', views.post_session),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -25,7 +25,7 @@ def index(request):
     # Render the HTML template index.html with the data in the context variable
     return render(request, "index.html", context=context)
 
-def events(request):
+def search(request):
     """View function for events page of site."""
     # Generate counts of some of the main objects
     # num_books = Book.objects.all().count()
@@ -49,4 +49,46 @@ def events(request):
     }
 
     # Render the HTML template index.html with the data in the context variable
-    return render(request, "events.html", context=context)
+    return render(request, "search.html", context=context)
+
+def results(request):
+    """View function for events page of site."""
+
+    context = {
+        # "num_books": num_books,
+        # "num_instances": num_instances,
+        # "num_instances_available": num_instances_available,
+        # "num_authors": num_authors,
+        # "num_events": num_events
+    }
+
+    # Render the HTML template index.html with the data in the context variable
+    return render(request, "results.html", context=context)
+
+def chat(request):
+    """View function for events page of site."""
+
+    context = {
+        # "num_books": num_books,
+        # "num_instances": num_instances,
+        # "num_instances_available": num_instances_available,
+        # "num_authors": num_authors,
+        # "num_events": num_events
+    }
+
+    # Render the HTML template index.html with the data in the context variable
+    return render(request, "chat.html", context=context)
+
+def post_session(request):
+    """View function for events page of site."""
+
+    context = {
+        # "num_books": num_books,
+        # "num_instances": num_instances,
+        # "num_instances_available": num_instances_available,
+        # "num_authors": num_authors,
+        # "num_events": num_events
+    }
+
+    # Render the HTML template index.html with the data in the context variable
+    return render(request, "post_session_page.html", context=context)
