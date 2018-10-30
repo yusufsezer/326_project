@@ -13,9 +13,11 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
+    {% load static %}
+
     <!-- Custom styles for this template -->
-    <link href="../styles/post_session_page.css" rel="stylesheet">
-    <link href="../styles/index.css" rel="stylesheet">
+    <link href="{% static 'styles/post_session_page.css' %}" rel="stylesheet">
+    <link href="{% static 'styles/index.css' %}" rel="stylesheet">
   </head>
 
   <body class="bg-light">
@@ -111,7 +113,7 @@
                 <div class="card second-row-cards">
                     <div class="card-body">
                         <div class="card-img">
-                            <img class="clsimage" src="../images/sf5.jpg">
+                            <img class="clsimage" src="{% static "images/sf5.jpg" %}">
                         </div>
                         <div class="pic-contents">
                             <p class="card-title second-name">Street Fighter V</p>
