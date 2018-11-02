@@ -24,21 +24,21 @@
     <main role="main" class="container">
         <div class="row">
             <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-                <a class="navbar-brand" href="#">PlayWithMe</a>
+                <a class="navbar-brand" href="{% url 'index' %}">PlayWithMe</a>
                 <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
                     <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Create Group</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'create_group' %}">Create Group</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">My Groups</a>
+                        <a class="nav-link" href="{% url 'my_groups' %}">My Groups</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Find a Group</a>
+                        <a class="nav-link" href="{% url 'find_group' %}">Find a Group</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Help</a>
@@ -113,7 +113,7 @@
                 <div class="card second-row-cards">
                     <div class="card-body">
                         <div class="card-img">
-                            <img class="clsimage" src="{% static "images/sf5.jpg" %}">
+                            <img class="clsimage" src="{% static 'images/sf5.jpg' %}">
                         </div>
                         <div class="pic-contents">
                             <p class="card-title second-name">Street Fighter V</p>
@@ -126,7 +126,7 @@
                 <div class="card second-row-cards">
                     <div class="card-body">
                         <div class="card-img">
-                            <img class="clsimage" src="../images/smash5.png">
+                            <img class="clsimage" src="{% static 'images/smash5.png' %}">
                         </div>
                         <div class="pic-contents">
                             <p class="card-title second-name">Smash Bros Ultimate</p>
@@ -139,7 +139,7 @@
                 <div class="card second-row-cards">
                     <div class="card-body">
                         <div class="card-img">
-                            <img class="clsimage" src="../images/call-of-duty-black-ops-4.png">
+                            <img class="clsimage" src="{% static 'images/call-of-duty-black-ops-4.png' %}">
                         </div>
                         <div class="pic-contents">
                             <p class="card-title second-name">Black Ops 4</p>
@@ -159,7 +159,7 @@
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    <script src="../scripts/holder.js"></script>
-    <script src="../scripts/search.js"></script>
+    <script src="{% static 'scripts/holder.js' %}"></script>
+    <script src="{% static 'scripts/search.js' %}"></script>
   </body>
 </html>
