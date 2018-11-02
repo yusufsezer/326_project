@@ -53,7 +53,7 @@ class GameAdmin(admin.ModelAdmin):
     # model. Fields are displayed vertically by default, but will
     # display horizontally if you further group them in a tuple as we
     # do here for the birth and death dates.
-    fields = ["title, ""online", "description", "link"]
+    fields = ["title", "online", "description", "link"]
 
     inlines = [PlatformInline]
 

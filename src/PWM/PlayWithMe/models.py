@@ -159,7 +159,7 @@ class Message(models.Model):
         default=""
     )
 
-    owner = models.OneToOneField(
+    sender = models.OneToOneField(
         "User",
         on_delete=models.SET_NULL,
         null=True
