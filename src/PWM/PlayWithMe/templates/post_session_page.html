@@ -1,141 +1,68 @@
+{% extends 'base_generic.html' %}
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
+{% load static %}
 
-    <title>Post Session</title>
-
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-
-    <!-- Custom styles for this template -->
-    <link href="../styles/post_session_page.css" rel="stylesheet">
-  </head>
-
-  <body class="bg-light">
-
-    <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">PlayWithMe</a>
-      <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Create Group</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">My Groups</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Find a Group</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Help</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">About Us</a>
-              <a class="dropdown-item" href="#">Feedback</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <div class="nav-scroller bg-white box-shadow">
-      <nav class="nav nav-underline">
-        <a class="nav-link active" href="#">Dashboard</a>
-        <a class="nav-link" href="#">
-          Friends
-          <span class="badge badge-pill bg-light align-text-bottom">27</span>
-        </a>
-        <a class="nav-link" href="#">Explore</a>
-        <a class="nav-link" href="#">Suggestions</a>
-        <a class="nav-link" href="#">Link</a>
-        <a class="nav-link" href="#">Link</a>
-        <a class="nav-link" href="#">Link</a>
-        <a class="nav-link" href="#">Link</a>
-        <a class="nav-link" href="#">Link</a>
-      </nav>
+{% block content %}
+  
+<div class="card my-4">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Online</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Local</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title text-center">Create an Online Session</h5>
+    <p class="card-text text-center">Customize the settings below to build your online gaming session!</p>
+    <div class="form-group">
+      <label for="sessionName1">Session Name</label>
+      <input class="form-control" id="sessionName" placeholder="Enter session name">
     </div>
-
-    <main role="main" class="container">
-      <div class="card my-4">
-        <div class="card-header">
-          <ul class="nav nav-tabs card-header-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Online</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Local</a>
-            </li>
-          </ul>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title text-center">Create an Online Session</h5>
-          <p class="card-text text-center">Customize the settings below to build your online gaming session!</p>
-          <div class="form-group">
-            <label for="sessionName1">Session Name</label>
-            <input class="form-control" id="sessionName" placeholder="Enter session name">
-          </div>
-          <div class="form-group">
-          <label for="onlineRegionSelector">Choose Preferred Online Region</label>
-            <select class="form-control" id="onlineRegionSelector">
-              <option>Select...</option>
-              <option>NA</option>
-              <option>EU</option>
-              <option>AS</option>
-              <option>AU</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="keywords">Keywords</label>
-            <input class="form-control" id="keywords" placeholder="Keywords">
-            <small id="keywordsHelp" class="form-text text-muted">Choosing meaningful keywords will make it easier for users to find your group</small>
-          </div>
-          <div class="form-group">
-            <label for="inputConsole">Select a console:</label>
-            <select class="form-control" id="inputConsole">
-              <option>Select...</option>
-              <option>Xbox One</option>
-              <option>Playstation 4</option>
-              <option>Nintendo Switch</option>
-              <option>PC</option>
-              <option>Xbox 360</option>
-              <option>Playstation 3</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="inputGame">Select a game:</label>
-            <select class="form-control" id="inputGame">
-              <option>Select...</option>
-              <option>Fortnite</option>
-              <option>Minecraft</option>
-              <option>Tetris</option>
-              <option>Monopoly</option>
-              <option>Overwatch</option>
-              <option>FIFA 2018</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <a href="#" class="btn btn-primary">Create Session</a>
-        </div>
-      </div>
-    </main>
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    <script src="../scripts/holder.js"></script>
-    <script src="../scripts/search.js"></script>
-  </body>
-</html>
+    <div class="form-group">
+    <label for="onlineRegionSelector">Choose Preferred Online Region</label>
+      <select class="form-control" id="onlineRegionSelector">
+        <option>Select...</option>
+        <option>NA</option>
+        <option>EU</option>
+        <option>AS</option>
+        <option>AU</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="keywords">Keywords</label>
+      <input class="form-control" id="keywords" placeholder="Keywords">
+      <small id="keywordsHelp" class="form-text text-muted">Choosing meaningful keywords will make it easier for users to find your group</small>
+    </div>
+    <div class="form-group">
+      <label for="inputConsole">Select a console:</label>
+      <select class="form-control" id="inputConsole">
+        <option>Select...</option>
+        <option>Xbox One</option>
+        <option>Playstation 4</option>
+        <option>Nintendo Switch</option>
+        <option>PC</option>
+        <option>Xbox 360</option>
+        <option>Playstation 3</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="inputGame">Select a game:</label>
+      <select class="form-control" id="inputGame">
+        <option>Select...</option>
+        <option>Fortnite</option>
+        <option>Minecraft</option>
+        <option>Tetris</option>
+        <option>Monopoly</option>
+        <option>Overwatch</option>
+        <option>FIFA 2018</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <a href="#" class="btn btn-primary">Create Session</a>
+  </div>
+</div>
+{% endblock %}
