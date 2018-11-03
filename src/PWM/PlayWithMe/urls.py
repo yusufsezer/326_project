@@ -17,7 +17,7 @@ urlpatterns = [
     # path('', RedirectView.as_view(url='/home/')),
     path('', views.index, name='index'),
     path('search/', views.search, name='find_group'),
-    path('results/', views.results),
+    path('results/', views.results, name='search_results'),
     path('chat/', views.chat, name='my_groups'),
     path('post_session/', views.post_session, name='create_group'),
 ]
