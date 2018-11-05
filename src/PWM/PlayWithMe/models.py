@@ -2,17 +2,17 @@ from datetime import datetime
 from django.db import models
 from django import forms
 
-class User(models.Model):
-    """Model representing a User."""
+class Profile(models.Model):
+    """Model representing a Profile."""
 
     username = models.CharField(
         max_length=20,
-        help_text="The user's username"
+        help_text="The Profile's username"
     )
 
     password = models.CharField(
         max_length=20,
-        help_text="The user's password"
+        help_text="The profile's password"
     )
 
     # sessions = models.ManyToManyField(
@@ -69,7 +69,7 @@ class User(models.Model):
 
     def __str__(self):
         """String for representing the Model object."""
-        return self.username
+        return self.Profilename
 
 class Session(models.Model):
     """Model representing a Session."""
@@ -80,12 +80,12 @@ class Session(models.Model):
         primary_key=True
     )
 
-    users = models.ManyToManyField(
-        "User"
+    Profiles = models.ManyToManyField(
+        "Profile"
     )
 
     owner = models.OneToOneField(
-        "User",
+        "Profile",
         on_delete=models.SET_NULL,
         null=True,
         related_name="owner"
@@ -208,7 +208,7 @@ class Message(models.Model):
     )
 
     sender = models.ForeignKey(
-        "User",
+        "Profile",
         on_delete=models.SET_NULL,
         null=True
     )

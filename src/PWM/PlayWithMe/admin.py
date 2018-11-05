@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from PlayWithMe.models import User, Session, Game, Platform, Message
+from PlayWithMe.models import Profile, Session, Game, Platform, Message
 
 class GameInline(admin.TabularInline):
     model = Game
@@ -14,8 +14,8 @@ class MessageInline(admin.TabularInline):
 class SessionInline(admin.TabularInline):
     model = Session
 
-@admin.register(User)
-class UserAdmin(admin.ModelAdmin):
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
     # By setting the list_display variable in an Admin class will have
     # it display only the fields in the model that are specified.
     list_display = ("username",)
@@ -38,7 +38,7 @@ class SessionAdmin(admin.ModelAdmin):
     # model. Fields are displayed vertically by default, but will
     # display horizontally if you further group them in a tuple as we
     # do here for the birth and death dates.
-    fields = ["id", "owner", "users", "games", "location", "online", "platforms"]
+    fields = ["id", "owner", "Profiles", "games", "location", "online", "platforms"]
 
     inlines = [MessageInline]
 
