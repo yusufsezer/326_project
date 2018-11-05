@@ -25,7 +25,7 @@ class UserAdmin(admin.ModelAdmin):
     # model. Fields are displayed vertically by default, but will
     # display horizontally if you further group them in a tuple as we
     # do here for the birth and death dates.
-    fields = ["username", "sessions", "sessions_owned"]
+    fields = ["username", "sessions", "sessions_owned", "games", "platforms", "password"]
 
 @admin.register(Session)
 class SessionAdmin(admin.ModelAdmin):
@@ -38,7 +38,7 @@ class SessionAdmin(admin.ModelAdmin):
     # model. Fields are displayed vertically by default, but will
     # display horizontally if you further group them in a tuple as we
     # do here for the birth and death dates.
-    fields = ["id", "owner", "users", "location", "online"]
+    fields = ["id", "owner", "users", "games", "location", "online", "platforms"]
 
     inlines = [MessageInline]
 
@@ -53,9 +53,9 @@ class GameAdmin(admin.ModelAdmin):
     # model. Fields are displayed vertically by default, but will
     # display horizontally if you further group them in a tuple as we
     # do here for the birth and death dates.
-    fields = ["title", "online", "description", "link"]
+    fields = ["title", "online", "description", "platforms", "link"]
 
-    inlines = [PlatformInline]
+    # inlines = [PlatformInline]
 
 @admin.register(Platform)
 class PlatformAdmin(admin.ModelAdmin):
@@ -68,9 +68,9 @@ class PlatformAdmin(admin.ModelAdmin):
     # model. Fields are displayed vertically by default, but will
     # display horizontally if you further group them in a tuple as we
     # do here for the birth and death dates.
-    fields = ["name"]
+    fields = ["name", "games"]
 
-    inlines = [GameInline]
+    # inlines = [GameInline]
 
 @admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
@@ -84,5 +84,3 @@ class MessageAdmin(admin.ModelAdmin):
     # display horizontally if you further group them in a tuple as we
     # do here for the birth and death dates.
     fields = ["context", "text", "sender", "datetime"]
-
-    inlines = [SessionInline]

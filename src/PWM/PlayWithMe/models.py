@@ -15,30 +15,56 @@ class User(models.Model):
         help_text="The user's password"
     )
 
-    sessions = models.ForeignKey(
+    # sessions = models.ManyToManyField(
+    #     "Session",
+    #      on_delete=models.SET_NULL,
+    #      null=True,
+    #      related_name="sessions",
+    #      blank=True
+    # )
+
+    sessions = models.ManyToManyField(
         "Session",
-         on_delete=models.SET_NULL,
-         null=True,
-         related_name="sessions"
+        related_name="sessions",
+        blank=True
     )
 
-    sessions_owned = models.ForeignKey(
+    # sessions_owned = models.ForeignKey(
+    #     "Session",
+    #     on_delete=models.SET_NULL,
+    #     null=True,
+    #     related_name="sessions_owned",
+    #     blank=True
+    # )
+
+    sessions_owned = models.ManyToManyField(
         "Session",
-        on_delete=models.SET_NULL,
-        null=True,
-        related_name="sessions_owned"
+        related_name="sessions_owned",
+        blank=True
     )
 
-    games = models.ForeignKey(
+    # games = models.ForeignKey(
+    #     "Game",
+    #     on_delete=models.SET_NULL,
+    #     null=True,
+    #     blank=True
+    # )
+
+    games = models.ManyToManyField(
         "Game",
-        on_delete=models.SET_NULL,
-        null=True
+        blank=True
     )
 
-    platforms = models.ForeignKey(
+    # platforms = models.ForeignKey(
+    #     "Platform",
+    #     on_delete=models.SET_NULL,
+    #     null=True,
+    #     blank=True
+    # )
+
+    platforms = models.ManyToManyField(
         "Platform",
-        on_delete=models.SET_NULL,
-        null=True
+        blank=True
     )
 
     def __str__(self):
@@ -54,11 +80,8 @@ class Session(models.Model):
         primary_key=True
     )
 
-    users = models.ForeignKey(
-        "User",
-        on_delete=models.SET_NULL,
-        null=True,
-        related_name="users"
+    users = models.ManyToManyField(
+        "User"
     )
 
     owner = models.OneToOneField(
@@ -68,22 +91,35 @@ class Session(models.Model):
         related_name="owner"
     )
 
-    games = models.ForeignKey(
+    # games = models.ForeignKey(
+    #     "Game",
+    #     on_delete=models.SET_NULL,
+    #     null=True,
+    #     blank=True
+    # )
+
+    games = models.ManyToManyField(
         "Game",
-        on_delete=models.SET_NULL,
-        null=True
+        blank=True
     )
 
-    platforms = models.ForeignKey(
+    # platforms = models.ForeignKey(
+    #     "Platform",
+    #     on_delete=models.SET_NULL,
+    #     null=True,
+    #     blank=True
+    # )
+
+    platforms = models.ManyToManyField(
         "Platform",
-        on_delete=models.SET_NULL,
-        null=True
+        blank=True
     )
 
     messages = models.ForeignKey(
         "Message",
         on_delete=models.SET_NULL,
-        null=True
+        null=True,
+        blank=True
     )
 
     location = models.CharField(
@@ -107,10 +143,16 @@ class Game(models.Model):
         default=""
     )
 
-    platforms = models.ForeignKey(
+    # platforms = models.ForeignKey(
+    #     "Platform",
+    #     on_delete=models.SET_NULL,
+    #     null=True,
+    #     blank=True
+    # )
+
+    platforms = models.ManyToManyField(
         "Platform",
-        on_delete=models.SET_NULL,
-        null=True
+        blank=True
     )
 
     online = models.BooleanField(default=True)
@@ -140,10 +182,16 @@ class Platform(models.Model):
         default=""
     )
 
-    games = models.ForeignKey(
+    # games = models.ForeignKey(
+    #     "Game",
+    #     on_delete=models.SET_NULL,
+    #     null=True,
+    #     blank=True
+    # )
+
+    games = models.ManyToManyField(
         "Game",
-        on_delete=models.SET_NULL,
-        null=True
+        blank=True
     )
 
     def __str__(self):
@@ -159,17 +207,23 @@ class Message(models.Model):
         default=""
     )
 
-    sender = models.OneToOneField(
+    sender = models.ForeignKey(
         "User",
         on_delete=models.SET_NULL,
         null=True
     )
 
-    context = models.OneToOneField(
+    context = models.ForeignKey(
         "Session",
         on_delete=models.SET_NULL,
         null=True
     )
+
+    # context = models.ForeignKey(
+    #     "Session",
+    #     on_delete=models.SET_NULL,
+    #     null=True
+    # )
 
     datetime = models.DateTimeField(
         default=datetime.now,
@@ -178,4 +232,4 @@ class Message(models.Model):
 
     def __str__(self):
         """String for representing the Model object."""
-        return f"Message from: {self.owner} with text: {self.text}"
+        return f"Message from: {self.sender} with text: {self.text}"
