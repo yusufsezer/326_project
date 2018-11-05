@@ -20,6 +20,7 @@ urlpatterns = [
     path('results/', views.results, name='search_results'),
     path('chat/', views.chat, name='my_groups'),
     path('post_session/', views.post_session, name='create_group'),
+    path('signup/', views.signup, name='signup')
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
