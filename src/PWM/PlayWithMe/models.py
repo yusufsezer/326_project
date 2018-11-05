@@ -69,7 +69,7 @@ class Profile(models.Model):
 
     def __str__(self):
         """String for representing the Model object."""
-        return self.Profilename
+        return self.username
 
 class Session(models.Model):
     """Model representing a Session."""
