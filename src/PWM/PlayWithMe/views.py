@@ -2,7 +2,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from PlayWithMe.models import Session
+from PlayWithMe.models import Session, Platform, Game
 
 # Create your views here.
 def index(request):
@@ -57,8 +57,10 @@ def search(request):
 def results(request):
     """View function for results page of site."""
     session_list = Session.objects.all()
+    games_list = [[game for game in session.games.iterator()] for session in session_list]
     context = {
-        "session_list": session_list
+        "session_list": session_list,
+        "games_list": games_list
     }
     return render(request, "results.html", context=context)
 
@@ -78,9 +80,11 @@ def chat(request):
 
 def post_session(request):
     """View function for events page of site."""
-
+    platforms = Platform.objects.all()
+    games = Game.objects.all()
     context = {
-        # "num_books": num_books,
+        "platforms": platforms,
+        "games": games,
         # "num_instances": num_instances,
         # "num_instances_available": num_instances_available,
         # "num_authors": num_authors,

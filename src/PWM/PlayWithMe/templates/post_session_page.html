@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content %}
-  
+
 <div class="card my-4">
   <div class="card-header">
     <ul class="nav nav-tabs card-header-tabs">
@@ -41,25 +41,18 @@
       <label for="inputConsole">Select a console:</label>
       <select class="form-control" id="inputConsole">
         <option>Select...</option>
-        <option>Xbox One</option>
-        <option>Playstation 4</option>
-        <option>Nintendo Switch</option>
-        <option>PC</option>
-        <option>Xbox 360</option>
-        <option>Playstation 3</option>
+        {% for platform in platforms %}
+        <option>{{ platform }}</option>
+        {% endfor %}
       </select>
     </div>
     <div class="form-group">
       <label for="inputGame">Select a game:</label>
       <select class="form-control" id="inputGame">
         <option>Select...</option>
-        <option>Fortnite</option>
-        <option>Minecraft</option>
-        <option>Tetris</option>
-        <option>Monopoly</option>
-        <option>Overwatch</option>
-        <option>FIFA 2018</option>
-        <option>Other</option>
+        {% for game in games %}
+        <option>{{ game }}</option>
+        {% endfor %}
       </select>
     </div>
     <a href="#" class="btn btn-primary">Create Session</a>
