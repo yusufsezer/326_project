@@ -91,7 +91,7 @@ class Session(models.Model):
         "Profile"
     )
 
-    owner = models.OneToOneField(
+    owner = models.ForeignKey(
         "Profile",
         on_delete=models.SET_NULL,
         null=True,

@@ -17,6 +17,10 @@ platforms = [
     Platform(name="Nintendo Switch")
 ]
 
+# Save Platform objects
+for platform in platforms:
+    platform.save()
+
 # Create and save Game objects
 games = []
 for _ in range(10):
@@ -43,6 +47,10 @@ for _ in range(15):
         password=profile_password
     )
     profile.save()
+    profile_platforms = random.sample(platforms, random.randint(1, len(platforms)))
+    for platform in profile_platforms:
+        profile.platforms.add(platform)
+    profile.save()
     profiles.append(profile)
 
 # Create and save Session objects
@@ -64,16 +72,6 @@ messages = []
 for i in range(20):
     message_text = fake.text(100)
     message_sender = profiles[random.randint(0, len(profiles) - 1)]
-    # message_time = datetime(
-    #     random.randint(2010, 2018),
-    #     random.randint(1, 12),
-    #     random.randint(1, 28),
-    #     14,
-    #     34,
-    #     12,
-    #     9,
-    #     tzinfo=timezone.get_current_timezone()
-    # )
     message_time = fake.date_time_this_year(before_now=True, after_now=False, tzinfo=timezone.get_current_timezone())
     message = Message(
         text=message_text,
@@ -82,11 +80,6 @@ for i in range(20):
     )
     message.save()
     messages.append(message)
-
-
-# Save Platform objects
-for platform in platforms:
-    platform.save()
 
 # Randomly associate games with platforms
 for platform in platforms:
@@ -98,30 +91,18 @@ for platform in platforms:
         games[i].save()
     platform.save()
 
-# Randomly associate Games, Platforms, Session with Profiles
-for profile in profiles:
-    num_platforms = random.randint(1, len(platforms))
-    num_games = random.randint(1, len(games))
-    num_sessions = random.randint(1, len(sessions))
-    platform_indices = random.sample(range(0, len(platforms)), num_platforms)
-    game_indices = random.sample(range(0, len(games)), num_games)
-    session_indices = random.sample(range(0, len(sessions)), num_sessions)
-    for i in platform_indices:
-        profile.platforms.add(platforms[i])
-    for i in game_indices:
-        profile.games.add(games[i])
-    for i in session_indices:
-        profile.sessions.add(sessions[i])
-        sessions[i].profiles.add(profile)
-    # for session in sessions:
-    #     # print("here: ", type(Profile.session))
-    #     owner = Profile.objects.get(sessions=session)
-    #     for sess in Profile.sessions:
-    #         if sess in owner.sessions:
-    #             print('yahooooo!')
-    #     owner.sessions_owned.add(session)
-    #     session.owner.add(owner)
-    profile.save()
+for session in sessions:
+    num_people = random.randint(1, len(profiles))
+    people_in_session = random.sample(profiles, num_people)
+    session.profiles.set(people_in_session)
+    owner = random.sample(people_in_session, 1)[0]
+    owner.sessions_owned.add(session)
+    session.owner = owner
+
+    for profile in people_in_session:
+        profile.sessions.add(session)
+        profile.save()
+    session.save()
 
 
 # Setup admin user
