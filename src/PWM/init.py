@@ -1,5 +1,6 @@
-from datetime import timedelta, date
+from datetime import timedelta, date, datetime
 from django.contrib.auth.models import User, Group, Permission
+from django.utils import timezone
 from faker import Faker
 from PlayWithMe.models import Platform, Game, Profile, Message, Session
 import random
@@ -57,6 +58,31 @@ for i in range(10):
     )
     session.save()
     sessions.append(session)
+
+# Create and save Message objects
+messages = []
+for i in range(20):
+    message_text = fake.text(100)
+    message_sender = profiles[random.randint(0, len(profiles) - 1)]
+    # message_time = datetime(
+    #     random.randint(2010, 2018),
+    #     random.randint(1, 12),
+    #     random.randint(1, 28),
+    #     14,
+    #     34,
+    #     12,
+    #     9,
+    #     tzinfo=timezone.get_current_timezone()
+    # )
+    message_time = fake.date_time_this_year(before_now=True, after_now=False, tzinfo=timezone.get_current_timezone())
+    message = Message(
+        text=message_text,
+        sender=message_sender,
+        datetime=message_time
+    )
+    message.save()
+    messages.append(message)
+
 
 # Save Platform objects
 for platform in platforms:

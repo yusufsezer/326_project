@@ -76,7 +76,7 @@ class PlatformAdmin(admin.ModelAdmin):
 class MessageAdmin(admin.ModelAdmin):
     # By setting the list_display variable in an Admin class will have
     # it display only the fields in the model that are specified.
-    list_display = ("context", "text")
+    list_display = ("context", "text", "sender", "datetime")
 
     # By setting the fields variable in an Admin class will only
     # display the specified fields in the "detail view" of the

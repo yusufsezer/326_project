@@ -1,8 +1,9 @@
 import uuid
 
 from datetime import datetime
-from django.db import models
 from django import forms
+from django.db import models
+from django.utils import timezone
 
 from django.urls import reverse
 from django.contrib.auth.models import User  # NEW 10
@@ -238,7 +239,7 @@ class Message(models.Model):
     # )
 
     datetime = models.DateTimeField(
-        default=datetime.now,
+        default=timezone.now,
         blank=True
     )
 
