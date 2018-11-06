@@ -1,6 +1,12 @@
+import uuid
+
 from datetime import datetime
 from django.db import models
 from django import forms
+
+from django.urls import reverse
+from django.contrib.auth.models import User  # NEW 10
+from datetime import date  # NEW 10
 
 class Profile(models.Model):
     """Model representing a Profile."""
@@ -80,7 +86,7 @@ class Session(models.Model):
         primary_key=True
     )
 
-    Profiles = models.ManyToManyField(
+    profiles = models.ManyToManyField(
         "Profile"
     )
 
@@ -175,6 +181,12 @@ class Game(models.Model):
 
 class Platform(models.Model):
     """Model representing a Platform."""
+    #
+    # id = models.CharField(
+    #     max_length=60,
+    #     help_text="ID to uniquely identify a platform",
+    #     primary_key=True
+    # )
 
     name = models.CharField(
         max_length=100,

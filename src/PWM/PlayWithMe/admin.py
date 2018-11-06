@@ -38,7 +38,7 @@ class SessionAdmin(admin.ModelAdmin):
     # model. Fields are displayed vertically by default, but will
     # display horizontally if you further group them in a tuple as we
     # do here for the birth and death dates.
-    fields = ["id", "owner", "Profiles", "games", "location", "online", "platforms"]
+    fields = ["id", "owner", "profiles", "games", "location", "online", "platforms"]
 
     inlines = [MessageInline]
 
