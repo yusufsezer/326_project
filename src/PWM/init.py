@@ -67,20 +67,6 @@ for i in range(10):
     session.save()
     sessions.append(session)
 
-# Create and save Message objects
-messages = []
-for i in range(20):
-    message_text = fake.text(100)
-    message_sender = profiles[random.randint(0, len(profiles) - 1)]
-    message_time = fake.date_time_this_year(before_now=True, after_now=False, tzinfo=timezone.get_current_timezone())
-    message = Message(
-        text=message_text,
-        sender=message_sender,
-        datetime=message_time
-    )
-    message.save()
-    messages.append(message)
-
 # Randomly associate games with platforms
 for platform in platforms:
     num_games = random.randint(1, len(games))
@@ -104,6 +90,22 @@ for session in sessions:
         profile.save()
     session.save()
 
+# Create and save Message objects
+messages = []
+for i in range(20):
+    message_text = fake.text(100)
+    message_sender = profiles[random.randint(0, len(profiles) - 1)]
+    message_session = message_sender.sessions.all()
+    message_session = message_session[random.randint(0, len(message_session)-1)]
+    message_time = fake.date_time_this_year(before_now=True, after_now=False, tzinfo=timezone.get_current_timezone())
+    message = Message(
+        text=message_text,
+        sender=message_sender,
+        datetime=message_time,
+        context=message_session,
+    )
+    message.save()
+    messages.append(message)
 
 # Setup admin user
 username = "admin"
