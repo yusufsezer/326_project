@@ -22,27 +22,11 @@ class Profile(models.Model):
         help_text="The profile's password"
     )
 
-    # sessions = models.ManyToManyField(
-    #     "Session",
-    #      on_delete=models.SET_NULL,
-    #      null=True,
-    #      related_name="sessions",
-    #      blank=True
-    # )
-
     sessions = models.ManyToManyField(
         "Session",
         related_name="sessions",
         blank=True
     )
-
-    # sessions_owned = models.ForeignKey(
-    #     "Session",
-    #     on_delete=models.SET_NULL,
-    #     null=True,
-    #     related_name="sessions_owned",
-    #     blank=True
-    # )
 
     sessions_owned = models.ManyToManyField(
         "Session",
@@ -50,24 +34,10 @@ class Profile(models.Model):
         blank=True
     )
 
-    # games = models.ForeignKey(
-    #     "Game",
-    #     on_delete=models.SET_NULL,
-    #     null=True,
-    #     blank=True
-    # )
-
     games = models.ManyToManyField(
         "Game",
         blank=True
     )
-
-    # platforms = models.ForeignKey(
-    #     "Platform",
-    #     on_delete=models.SET_NULL,
-    #     null=True,
-    #     blank=True
-    # )
 
     platforms = models.ManyToManyField(
         "Platform",
@@ -98,24 +68,10 @@ class Session(models.Model):
         related_name="owner"
     )
 
-    # games = models.ForeignKey(
-    #     "Game",
-    #     on_delete=models.SET_NULL,
-    #     null=True,
-    #     blank=True
-    # )
-
     games = models.ManyToManyField(
         "Game",
         blank=True
     )
-
-    # platforms = models.ForeignKey(
-    #     "Platform",
-    #     on_delete=models.SET_NULL,
-    #     null=True,
-    #     blank=True
-    # )
 
     platforms = models.ManyToManyField(
         "Platform",
@@ -150,13 +106,6 @@ class Game(models.Model):
         default=""
     )
 
-    # platforms = models.ForeignKey(
-    #     "Platform",
-    #     on_delete=models.SET_NULL,
-    #     null=True,
-    #     blank=True
-    # )
-
     platforms = models.ManyToManyField(
         "Platform",
         blank=True
@@ -182,25 +131,12 @@ class Game(models.Model):
 
 class Platform(models.Model):
     """Model representing a Platform."""
-    #
-    # id = models.CharField(
-    #     max_length=60,
-    #     help_text="ID to uniquely identify a platform",
-    #     primary_key=True
-    # )
 
     name = models.CharField(
         max_length=100,
         help_text="The name of the platform (e.g. PlayStation 4)",
         default=""
     )
-
-    # games = models.ForeignKey(
-    #     "Game",
-    #     on_delete=models.SET_NULL,
-    #     null=True,
-    #     blank=True
-    # )
 
     games = models.ManyToManyField(
         "Game",
@@ -231,12 +167,6 @@ class Message(models.Model):
         on_delete=models.SET_NULL,
         null=True
     )
-
-    # context = models.ForeignKey(
-    #     "Session",
-    #     on_delete=models.SET_NULL,
-    #     null=True
-    # )
 
     datetime = models.DateTimeField(
         default=timezone.now,
