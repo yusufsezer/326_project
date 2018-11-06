@@ -23,23 +23,24 @@
         </p>
       </div>
     {% endfor %}
-    <div class="boxed card my-3">
-      <h2 style="align-self: center">Chat With Team:</h2>
-      {% for message in session.message_set.all %}
-        {% if message.sender %}
-          <div class="block left">
-              <img class="block-img" src="{% static 'images/chick.jpg' %}" alt={{message.sender}}>
-              <p>{{message.text}}</p>
-              <span class="timeRight">{{ message.datetime }}</span>
-          </div>
-        {% endif %}
-      {% endfor %}
-      <div>
-          <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="text" placeholder="Chat with team..." aria-label="Chat" style="width: 93%">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Send</button>
-          </form>
-      </div>
+    
+  </div>
+  <div class="boxed card my-3">
+    <h2 style="align-self: center">Chat With Team:</h2>
+    {% for message in session.message_set.all %}
+      {% if message.sender %}
+        <div class="block left">
+            <img class="block-img" src="{% static 'images/chick.jpg' %}" alt={{message.sender}}>
+            <p>{{message.text}}</p>
+            <span class="timeRight">{{ message.datetime }}</span>
+        </div>
+      {% endif %}
+    {% endfor %}
+    <div>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Chat with team..." aria-label="Chat" style="width: 93%">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Send</button>
+        </form>
     </div>
   </div>
 </div>
