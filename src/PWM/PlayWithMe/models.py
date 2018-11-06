@@ -51,7 +51,7 @@ class Profile(models.Model):
 class Session(models.Model):
     """Model representing a Session."""
 
-    id = models.CharField(
+    uuid = models.CharField(
         max_length=60,
         help_text="ID to uniquely identify a session",
         primary_key=True
@@ -99,9 +99,13 @@ class Session(models.Model):
 
     online = models.BooleanField(default=True)
 
+    def get_absolute_url(self):
+        """Returns the url to access a detail record for this book."""
+        return reverse("session", args=[str(self.pk)])
+
     def __str__(self):
         """String for representing the Model object."""
-        return self.id
+        return self.name
 
 class Game(models.Model):
     """Model representing a Game."""

@@ -61,7 +61,7 @@ for i in range(10):
     session_location = f"{fake.latitude()}, {fake.longitude()}"
     session_online = True if random.randint(0, 1) == 1 else 0
     session = Session(
-        id=session_id,
+        uuid=session_id,
         name=session_name,
         location=session_location,
         online=session_online

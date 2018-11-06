@@ -2,6 +2,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.views import generic
 from PlayWithMe.models import Profile, Session, Platform, Game
 
 # Create your views here.
@@ -47,9 +48,13 @@ def my_groups(request):
     """View function for results page of site."""
     profile_name = Profile.objects.all()[0].username
     profile_groups = Profile.objects.all()[0].sessions.all()
+    def view_group():
+        """brings up chat view"""
+        chat(request)
     context = {
         "profile_name": profile_name,
         "profile_groups": profile_groups,
+        "viewgroup": view_group,
     }
     return render(request, "my_groups.html", context=context)
 
@@ -61,15 +66,6 @@ def results(request):
     }
     return render(request, "results.html", context=context)
 
-def chat(request):
-    """View function for events page of site."""
-    session = None
-    context = {
-        "session": session
-    }
-
-    # Render the HTML template index.html with the data in the context variable
-    return render(request, "chat.html", context=context)
 
 def post_session(request):
     """View function for events page of site."""
@@ -98,3 +94,8 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
+
+
+class SessionDetailView(generic.DetailView):
+    model = Session
+    template_name = "chat.html"
