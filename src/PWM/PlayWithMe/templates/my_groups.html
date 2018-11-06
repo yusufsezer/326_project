@@ -25,7 +25,7 @@
       <tbody>
         {% for session in profile_groups %}
         <tr>
-          <td>{{ session.owner.username }}'s Group</td>
+          <td>{{ session.name }}</td>
           <td>{{ session.location }}</td>
           <td>{% for platform in session.platforms.all %}
                 {{platform}}<br>
