@@ -18,7 +18,8 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('search/', views.search, name='find_group'),
     path('results/', views.results, name='search_results'),
-    path('chat/', views.chat, name='my_groups'),
+    path('chat/', views.chat, name='chat'),
+    path('my_groups/', views.my_groups, name='my_groups'),
     path('post_session/', views.post_session, name='create_group'),
     path('signup/', views.signup, name='signup')
 ]

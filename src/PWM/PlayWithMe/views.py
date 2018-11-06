@@ -2,7 +2,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from PlayWithMe.models import Session
+from PlayWithMe.models import Profile, Session
 
 # Create your views here.
 def index(request):
@@ -54,6 +54,16 @@ def search(request):
     # Render the HTML template index.html with the data in the context variable
     return render(request, "search.html", context=context)
 
+def my_groups(request):
+    """View function for results page of site."""
+    profile_name = Profile.objects.all()[0].username
+    profile_groups = Profile.objects.all()[0].sessions.all()
+    context = {
+        "profile_name": profile_name,
+        "profile_groups": profile_groups,
+    }
+    return render(request, "my_groups.html", context=context)
+
 def results(request):
     """View function for results page of site."""
     session_list = Session.objects.all()
@@ -64,13 +74,9 @@ def results(request):
 
 def chat(request):
     """View function for events page of site."""
-
+    session = None
     context = {
-        # "num_books": num_books,
-        # "num_instances": num_instances,
-        # "num_instances_available": num_instances_available,
-        # "num_authors": num_authors,
-        # "num_events": num_events
+        "session": session
     }
 
     # Render the HTML template index.html with the data in the context variable

@@ -1,0 +1,53 @@
+{% extends 'base_generic.html' %}
+
+{% load static %}
+
+{% block styles %}
+<link href="{% static 'styles/results.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="card my-3">
+  <div class="card-body">
+    <h1>
+      Your Groups ({%if profile_name%}{{profile_name}}{%endif%})
+    </h1>
+    {% if profile_groups %}
+    <table class='table'>
+      <thead>
+        <th>Group Name</th>
+        <th>Location</th>
+        <th>Platform</th>
+        <th>Game</th>
+        <th>View</th>
+      </thead>
+      <tbody>
+        {% for session in profile_groups %}
+        <tr>
+          <td>{{ session.owner.username }}'s Group</td>
+          <td>{{ session.location }}</td>
+          <td>{% for platform in session.platforms.all %}
+                {{platform}}<br>
+                {% endfor %}</td>
+                <td>{% for game in session.games.all %}
+                      {{game}}<br>
+                      {% endfor %}</td>
+          <td><button type="button" class="btn btn-success">VIEW</button></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+<footer class="footer">
+  <div class="container">
+    <span class="text-muted">You can also create a new group <a href="{% url 'create_group' %}">here</a>!</span>
+  </div>
+</footer>
+{% endblock %}
