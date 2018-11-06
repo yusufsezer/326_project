@@ -2,7 +2,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from PlayWithMe.models import Profile, Session
+from PlayWithMe.models import Profile, Session, Platform, Game
 
 # Create your views here.
 def index(request):
@@ -29,26 +29,15 @@ def index(request):
     return render(request, "index.html", context=context)
 
 def search(request):
-    """View function for events page of site."""
-    # Generate counts of some of the main objects
-    # num_books = Book.objects.all().count()
-    # num_instances = BookInstance.objects.all().count()
-
-    # Available books (status = 'a')
-    # num_instances_available = BookInstance.objects.filter(
-    #     status__exact="a").count()
-
-    # The 'all()' is implied by default.
-    # num_authors = Author.objects.count()
-    #
-    # num_events = LibraryEvent.objects.all().count()
+    """View function for search page of site."""
+    platforms = Platform.objects.all()
+    games = Game.objects.all()
+    locations = set(session.location for session in Session.objects.all())
 
     context = {
-        # "num_books": num_books,
-        # "num_instances": num_instances,
-        # "num_instances_available": num_instances_available,
-        # "num_authors": num_authors,
-        # "num_events": num_events
+        "platforms": platforms,
+        "games": games,
+        "locations": locations
     }
 
     # Render the HTML template index.html with the data in the context variable
@@ -68,7 +57,7 @@ def results(request):
     """View function for results page of site."""
     session_list = Session.objects.all()
     context = {
-        "session_list": session_list
+        "session_list": session_list,
     }
     return render(request, "results.html", context=context)
 
@@ -84,13 +73,11 @@ def chat(request):
 
 def post_session(request):
     """View function for events page of site."""
-
+    platforms = Platform.objects.all()
+    games = Game.objects.all()
     context = {
-        # "num_books": num_books,
-        # "num_instances": num_instances,
-        # "num_instances_available": num_instances_available,
-        # "num_authors": num_authors,
-        # "num_events": num_events
+        "platforms": platforms,
+        "games": games,
     }
 
     # Render the HTML template index.html with the data in the context variable

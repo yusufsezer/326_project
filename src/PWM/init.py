@@ -40,7 +40,7 @@ for _ in range(10):
 # Create and save Profile objects
 profiles = []
 for _ in range(15):
-    profile_username = fake.user_name() #f"{fake.first_name()}_{fake.last_name()}"
+    profile_username = fake.user_name()
     profile_password = fake.password()
     profile = Profile(
         username=profile_username,
@@ -57,10 +57,12 @@ for _ in range(15):
 sessions = []
 for i in range(10):
     session_id = uuid.uuid4()
+    session_name = fake.text(50)
     session_location = f"{fake.latitude()}, {fake.longitude()}"
     session_online = True if random.randint(0, 1) == 1 else 0
     session = Session(
         id=session_id,
+        name=session_name,
         location=session_location,
         online=session_online
     )
@@ -91,6 +93,7 @@ for platform in platforms:
         games[i].save()
     platform.save()
 
+# Associate sessions with profiles, games and platforms
 for session in sessions:
     num_people = random.randint(1, len(profiles))
     people_in_session = random.sample(profiles, num_people)
@@ -108,10 +111,6 @@ for session in sessions:
     selected_platforms = random.sample(platforms, num_platforms)
     for platform in selected_platforms:
         session.platforms.add(platform)
-    # platform_games = []
-    # for platform in selected_platforms:
-    #     platform_games.append(platform.games.all())
-    # platform_games = set(platform_games)
     num_games = random.randint(1, len(games) - 1)
     selected_games = random.sample(games, num_games)
     for game in selected_games:

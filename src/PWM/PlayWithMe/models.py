@@ -57,6 +57,12 @@ class Session(models.Model):
         primary_key=True
     )
 
+    name = models.CharField(
+        max_length=100,
+        help_text="Name of the session",
+        null=True
+    )
+
     profiles = models.ManyToManyField(
         "Profile"
     )
