@@ -25,12 +25,12 @@
     {% endfor %}
     <div class="boxed card my-3">
       <h2 style="align-self: center">Chat With Team:</h2>
-      {% for message in session.messages.all %}
+      {% for message in session.message_set.all %}
         {% if message.sender %}
           <div class="block left">
               <img class="block-img" src="{% static 'images/chick.jpg' %}" alt={{message.sender}}>
               <p>{{message.text}}</p>
-              <span class="timeRight">11:00</span>
+              <span class="timeRight">{{ message.datetime }}</span>
           </div>
         {% endif %}
       {% endfor %}

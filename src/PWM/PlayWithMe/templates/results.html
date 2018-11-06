@@ -20,7 +20,6 @@
         <th>Location</th>
         <th>Platform</th>
         <th>Game</th>
-        <th>Members</th>
         <th>Join?</th>
       </thead>
       <tbody>
@@ -28,9 +27,12 @@
         <tr>
           <td>{{ session.owner.username }}'s Group</td>
           <td>{{ session.location }}</td>
-          <td>{{ session.platforms }}</td>
-          <td>{{ session.games }}</td>
-          <td>1/4</td>
+          <td>{% for platform in session.platforms.all %}
+                {{platform}}<br>
+                {% endfor %}</td>
+          <td>{% for game in session.games.all %}
+                {{game}}<br>
+                {% endfor %}</td>
           <td><button type="button" class="btn btn-success">JOIN</button></td>
         </tr>
         {% endfor %}
