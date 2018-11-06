@@ -29,26 +29,15 @@ def index(request):
     return render(request, "index.html", context=context)
 
 def search(request):
-    """View function for events page of site."""
-    # Generate counts of some of the main objects
-    # num_books = Book.objects.all().count()
-    # num_instances = BookInstance.objects.all().count()
-
-    # Available books (status = 'a')
-    # num_instances_available = BookInstance.objects.filter(
-    #     status__exact="a").count()
-
-    # The 'all()' is implied by default.
-    # num_authors = Author.objects.count()
-    #
-    # num_events = LibraryEvent.objects.all().count()
+    """View function for search page of site."""
+    platforms = Platform.objects.all()
+    games = Game.objects.all()
+    locations = set(session.location for session in Session.objects.all())
 
     context = {
-        # "num_books": num_books,
-        # "num_instances": num_instances,
-        # "num_instances_available": num_instances_available,
-        # "num_authors": num_authors,
-        # "num_events": num_events
+        "platforms": platforms,
+        "games": games,
+        "locations": locations
     }
 
     # Render the HTML template index.html with the data in the context variable
@@ -57,10 +46,8 @@ def search(request):
 def results(request):
     """View function for results page of site."""
     session_list = Session.objects.all()
-    games_list = [[game for game in session.games.iterator()] for session in session_list]
     context = {
         "session_list": session_list,
-        "games_list": games_list
     }
     return render(request, "results.html", context=context)
 
@@ -85,10 +72,6 @@ def post_session(request):
     context = {
         "platforms": platforms,
         "games": games,
-        # "num_instances": num_instances,
-        # "num_instances_available": num_instances_available,
-        # "num_authors": num_authors,
-        # "num_events": num_events
     }
 
     # Render the HTML template index.html with the data in the context variable
