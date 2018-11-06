@@ -51,6 +51,11 @@ for _ in range(15):
     for platform in profile_platforms:
         profile.platforms.add(platform)
     profile.save()
+    num_games = random.randint(1, len(games))
+    selected_games = random.sample(games, num_games)
+    for game in selected_games:
+        profile.games.add(game)
+    profile.save()
     profiles.append(profile)
 
 # Create and save Session objects
