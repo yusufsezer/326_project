@@ -19,7 +19,7 @@ Although our idea revolves around gaming--similar to platforms like Twitch--it d
 
 # Video
 
-TODO
+https://www.youtube.com/watch?v=EjqJ5SRd8bA
 
 # Design Overview
 
@@ -37,4 +37,15 @@ Finally, messages are simple data items that are associated with a sender (user)
 
 # Problems and Successes
 
-TODO
+One problem that we ran into was that we first implemented our data model incorrectly. While fixing this, we also discovered that our data model was not totally correct itself. We had to deviate from our original data model design because it did not behave as we would have liked it to.
+
+Another struggle we faced was passing information between views. For example, on the “My Sessions” page, we allow the user to view all of the Sessions that they belong to. The user is then able to click the “view” button next to a Session in order to view its details. In the backend, we had trouble passing the id of the Session that the user is trying to view. Once we figured out how to pass the Session id to the next view, we are able to render the details of the correct Session on the page.
+
+Other hiccups occurred with displaying the raw pages correctly. Some stylesheets and images were not displaying correctly due to the fact that we were not using Django's built-in static URL library.
+
+We ran into an issue with obtaining certain data in init.py. For example, when trying to find a user who belonged to a given session, we originally were not able to iterate through the list sessions that belonged to each user. In other words, we were having problems programmatically querying data that we had already produced.
+
+One major success was our use of Faker to correctly generate random data for our application. We were able to apply it to all areas, including generating usernames, messages, sessions, and even latitudes and longitudes. Once we had this data, we managed to display them all in the admin site correctly which involved correctly grouping games and platforms, along with messages, users, and sessions.
+
+We were also able to get the faker data from our database to render on our html pages including sessions, users, platforms, games, and locations in dropdown menus, and messages in a chat box.
+
