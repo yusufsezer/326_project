@@ -19,6 +19,16 @@ platforms = [
     Platform(name="Nintendo Switch")
 ]
 
+locations = [
+    "Center of Campus",
+    "Orchard Hill",
+    "Central",
+    "Northeast",
+    "CHC",
+    "Southwest",
+    "Other",
+]
+
 # Save Platform objects
 for platform in platforms:
     platform.save()
@@ -65,7 +75,7 @@ sessions = []
 for i in range(10):
     session_id = uuid.uuid4()
     session_name = fake.text(50)
-    session_location = f"{fake.latitude()}, {fake.longitude()}"
+    session_location = random.sample(locations, 1)[0];
     session_online = True if random.randint(0, 1) == 1 else 0
     session = Session(
         uuid=session_id,
