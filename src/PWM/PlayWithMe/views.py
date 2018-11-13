@@ -71,9 +71,11 @@ def post_session(request):
     """View function for events page of site."""
     platforms = Platform.objects.all()
     games = Game.objects.all()
+    locations = set(session.location for session in Session.objects.all())
     context = {
         "platforms": platforms,
         "games": games,
+        "locations": locations,
     }
 
     # Render the HTML template index.html with the data in the context variable
