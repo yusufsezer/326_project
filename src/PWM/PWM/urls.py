@@ -22,16 +22,7 @@ from django.views.generic import RedirectView
 from PlayWithMe import views
 
 urlpatterns = [
-#     path('admin/', admin.site.urls),
-#     path('home/', include('PlayWithMe.urls')),
     path('', include('PlayWithMe.urls'))
-    # path('', RedirectView.as_view(url='/home/')),
-#     path('search/', views.search),
-#     path('results/', views.results),
-#     path('chat/', views.chat),
-#     path('post_session/', views.post_session),
 ]
-
-# urlpatterns = []
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

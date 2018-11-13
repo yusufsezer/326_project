@@ -7,15 +7,8 @@ from django.views import generic
 from django.views.generic import RedirectView
 from PlayWithMe import views
 
-
-# urlpatterns = [
-#     path("", views.index, name="index"),
-# ]
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('home/', include('PlayWithMe.urls')),
-    # path('', RedirectView.as_view(url='/home/')),
     path('', views.index, name='index'),
     path('search/', views.search, name='find_group'),
     path('results/', views.results, name='search_results'),
