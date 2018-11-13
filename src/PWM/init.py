@@ -19,16 +19,6 @@ platforms = [
     Platform(name="Nintendo Switch")
 ]
 
-locations = [
-    "Center of Campus",
-    "Orchard Hill",
-    "Central",
-    "Northeast",
-    "CHC",
-    "Southwest",
-    "Other",
-]
-
 # Save Platform objects
 for platform in platforms:
     platform.save()
@@ -53,11 +43,10 @@ for _ in range(10):
 profiles = []
 for _ in range(15):
     profile_username = fake.user_name()
-    profile_password = fake.password()
     profile = Profile(
         username=profile_username,
-        password=profile_password
     )
+    profile.set_password(fake.password())
     profile.save()
     profile_platforms = random.sample(platforms, random.randint(1, len(platforms)))
     for platform in profile_platforms:
@@ -75,7 +64,7 @@ sessions = []
 for i in range(10):
     session_id = uuid.uuid4()
     session_name = fake.text(50)
-    session_location = random.sample(locations, 1)[0];
+    session_location = f"{fake.latitude()}, {fake.longitude()}"
     session_online = True if random.randint(0, 1) == 1 else 0
     session = Session(
         uuid=session_id,
