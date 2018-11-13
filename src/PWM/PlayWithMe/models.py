@@ -6,21 +6,11 @@ from django.db import models
 from django.utils import timezone
 
 from django.urls import reverse
-from django.contrib.auth.models import User  # NEW 10
+from django.contrib.auth.models import AbstractUser
 from datetime import date  # NEW 10
 
-class Profile(models.Model):
+class Profile(AbstractUser):
     """Model representing a Profile."""
-
-    username = models.CharField(
-        max_length=20,
-        help_text="The Profile's username"
-    )
-
-    password = models.CharField(
-        max_length=20,
-        help_text="The profile's password"
-    )
 
     sessions = models.ManyToManyField(
         "Session",

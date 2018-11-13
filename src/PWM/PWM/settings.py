@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'PlayWithMe.apps.PlaywithmeConfig'
 ]
 
+AUTH_USER_MODEL = 'PlayWithMe.Profile'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
