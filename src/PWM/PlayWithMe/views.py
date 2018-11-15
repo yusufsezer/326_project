@@ -42,8 +42,10 @@ def my_groups(request):
 def results(request):
     """View function for results page of site."""
     session_list = Session.objects.all()
+    current_profile = Profile.objects.get(user=request.user)
     context = {
         "session_list": session_list,
+        "current_profile": current_profile,
     }
     return render(request, "results.html", context=context)
 

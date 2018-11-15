@@ -11,6 +11,18 @@ User = get_user_model()
 
 fake = Faker()
 
+# Setup admin user
+username = "admin"
+password = "admin"
+email = "a@a.co"
+adminuser = User.objects.create_user(username, email, password)
+adminuser.save()
+adminuser.is_superuser = True
+adminuser.is_staff = True
+adminuser.save()
+admin_profile = Profile(user=adminuser)
+admin_profile.save()
+
 # Create platforms
 platforms = [
     Platform(name="PlayStation 4"),
@@ -50,7 +62,7 @@ for _ in range(10):
     games.append(game)
 
 # Create and save Profile objects
-profiles = []
+profiles = [admin_profile]
 for _ in range(15):
     profile_username = fake.user_name()
     profile_user = User(
@@ -139,14 +151,3 @@ for i in range(20):
     )
     message.save()
     messages.append(message)
-
-
-# Setup admin user
-username = "admin"
-password = "admin"
-email = "a@a.co"
-adminuser = User.objects.create_user(username, email, password)
-adminuser.save()
-adminuser.is_superuser = True
-adminuser.is_staff = True
-adminuser.save()

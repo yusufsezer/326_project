@@ -20,7 +20,7 @@
         <th>Location</th>
         <th>Platform</th>
         <th>Game</th>
-        <th>Join?</th>
+        <th>Action</th>
       </thead>
       <tbody>
         {% for session in session_list %}
@@ -33,7 +33,10 @@
           <td>{% for game in session.games.all %}
                 {{game}}<br>
                 {% endfor %}</td>
-          <td><button type="button" class="btn btn-success">JOIN</button></td>
+          <td><div class="">
+            <a href="{{session.get_absolute_url}}" class="btn btn-primary">VIEW</a>
+            <a href="{{session.get_absolute_url}}"><button type="button" class="btn btn-success" onclick="">JOIN </button></a></td>
+          </div>
         </tr>
         {% endfor %}
       </tbody>
