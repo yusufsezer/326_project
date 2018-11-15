@@ -24,7 +24,8 @@
     <main role="main" class="container">
         <div class="row">
             <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-                <a class="navbar-brand" href="{% url 'index' %}">PlayWithMe</a>
+                <!-- <a class="navbar-brand" href="{% url 'index' %}">PlayWithMe</a> -->
+                <a href="{% url 'index' %}"><img src="{% static 'images/LogoWhite.png' %}" style="width: 130px; height: 27px; margin-top: 5px; margin-right: 5px"></a>
                 <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
                     <span class="navbar-toggler-icon"></span>
                 </button>
