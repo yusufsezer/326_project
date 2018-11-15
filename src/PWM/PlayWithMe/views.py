@@ -42,7 +42,15 @@ def my_groups(request):
 
 def results(request):
     """View function for results page of site."""
-    session_list = Session.objects.all()
+    query_params = request.GET.dict()
+    session_list = Session.objects
+    to_pop=[]
+    for key in query_params:
+        if not query_params[key]:
+            to_pop.append(key)
+    for key in to_pop:
+        query_params.pop(key)
+    session_list = session_list.filter(**query_params)
     context = {
         "session_list": session_list,
     }
