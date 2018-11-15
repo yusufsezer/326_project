@@ -20,6 +20,7 @@
         <th>Location</th>
         <th>Platform</th>
         <th>Game</th>
+        <th>Online?</th>
         <th>Join?</th>
       </thead>
       <tbody>
@@ -33,6 +34,7 @@
           <td>{% for game in session.games.all %}
                 {{game}}<br>
                 {% endfor %}</td>
+          <td>{{ session.online }}</td>
           <td><button type="button" class="btn btn-success">JOIN</button></td>
         </tr>
         {% endfor %}
