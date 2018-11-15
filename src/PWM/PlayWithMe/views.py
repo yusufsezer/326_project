@@ -30,13 +30,12 @@ def search(request):
 
 def my_groups(request):
     """View function for results page of site."""
-    profile_groups = Profile.objects.all()[0].sessions.all()
-    def view_group():
-        """brings up chat view"""
-        chat(request)
+    profile = Profile.objects.get(user=request.user)
+    profile_groups = profile.sessions.all()
+    num_groups = len(profile_groups)
     context = {
         "profile_groups": profile_groups,
-        "viewgroup": view_group,
+        "num_groups": num_groups,
     }
     return render(request, "my_groups.html", context=context)
 
@@ -47,6 +46,7 @@ def results(request):
         "session_list": session_list,
     }
     return render(request, "results.html", context=context)
+
 
 
 def post_session(request):
@@ -74,11 +74,12 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
+            new_profile = Profile(user=user)
+            new_profile.save()
             return redirect("index")
     else:
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
-
 
 class SessionDetailView(generic.DetailView):
     model = Session
