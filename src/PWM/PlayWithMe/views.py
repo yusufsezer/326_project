@@ -30,13 +30,11 @@ def search(request):
 
 def my_groups(request):
     """View function for results page of site."""
-    profile_name = Profile.objects.all()[0].username
     profile_groups = Profile.objects.all()[0].sessions.all()
     def view_group():
         """brings up chat view"""
         chat(request)
     context = {
-        "profile_name": profile_name,
         "profile_groups": profile_groups,
         "viewgroup": view_group,
     }

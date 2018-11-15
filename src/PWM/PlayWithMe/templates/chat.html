@@ -19,11 +19,11 @@
       <div class="media text-muted pt-3">
         <img src="{% static 'images/chick.jpg' %}" class="img">
         <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-          <strong class="d-block text-gray-dark" style="padding-left: 5px">{{profile.username}}</strong>
+          <strong class="d-block text-gray-dark" style="padding-left: 5px">{{profile.user.username}}</strong>
         </p>
       </div>
     {% endfor %}
-    
+
   </div>
   <div class="boxed card my-3">
     <h2 style="align-self: center">Chat With Team:</h2>
