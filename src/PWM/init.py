@@ -53,10 +53,14 @@ for _ in range(10):
 profiles = []
 for _ in range(15):
     profile_username = fake.user_name()
-    profile = Profile(
+    profile_user = User(
         username=profile_username,
     )
-    profile.set_password(fake.password())
+    profile_user.set_password(fake.password())
+    profile_user.save()
+    profile = Profile(
+        user=profile_user
+    )
     profile.save()
     profile_platforms = random.sample(platforms, random.randint(1, len(platforms)))
     for platform in profile_platforms:

@@ -1,16 +1,23 @@
 import uuid
 
+from django.conf import settings
 from datetime import datetime
 from django import forms
 from django.db import models
 from django.utils import timezone
 
 from django.urls import reverse
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 from datetime import date  # NEW 10
 
-class Profile(AbstractUser):
+class Profile(models.Model):
     """Model representing a Profile."""
+
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        null=True
+    )
 
     sessions = models.ManyToManyField(
         "Session",
@@ -36,7 +43,7 @@ class Profile(AbstractUser):
 
     def __str__(self):
         """String for representing the Model object."""
-        return self.username
+        return self.user.username
 
 class Session(models.Model):
     """Model representing a Session."""
