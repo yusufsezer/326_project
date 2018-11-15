@@ -16,7 +16,7 @@ class Profile(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        null=True
+        default=None
     )
 
     sessions = models.ManyToManyField(
