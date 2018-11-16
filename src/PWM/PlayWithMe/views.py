@@ -43,6 +43,14 @@ def results(request):
     """View function for results page of site."""
     session_list = Session.objects.all()
     current_profile = Profile.objects.get(user=request.user)
+    query_params = request.GET.dict()
+    to_pop=[]
+    for key in query_params:
+        if not query_params[key]:
+            to_pop.append(key)
+    for key in to_pop:
+        query_params.pop(key)
+    session_list = session_list.filter(**query_params)
     context = {
         "session_list": session_list,
         "current_profile": current_profile,

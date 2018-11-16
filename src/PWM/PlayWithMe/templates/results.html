@@ -20,6 +20,7 @@
         <th>Location</th>
         <th>Platform</th>
         <th>Game</th>
+        <th>Online?</th>
         <th>Action</th>
       </thead>
       <tbody>
@@ -33,6 +34,7 @@
           <td>{% for game in session.games.all %}
                 {{game}}<br>
                 {% endfor %}</td>
+          <td>{{ session.online }}</td>
           <td><div class="">
             <a href="{{session.get_absolute_url}}" class="btn btn-primary">VIEW</a>
             <a href="{{session.get_absolute_url}}"><button type="button" class="btn btn-success" onclick="">JOIN </button></a></td>

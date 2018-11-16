@@ -11,48 +11,48 @@
 <div class="card my-3">
   <div class="card-body">
     <h3 class="mb-3">Find a group</h3>
-    <form action="{% url 'search_results' %}">
+    <form action="/results/" method="get" id="search_form">
       <div class="form-group row">
         <div class="col">
           <label>Where do you want to play?</label>
         </div>
         <div class="col">
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+            <input class="form-check-input" type="radio" name="online" id="inlineRadio1" value=True>
             <label class="form-check-label" for="inlineRadio1">Online</label>
           </div>
         </div>
         <div class="col">
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+            <input class="form-check-input" type="radio" name="online" id="inlineRadio2" value=False>
             <label class="form-check-label" for="inlineRadio2">Local</label>
           </div>
         </div>
       </div>
       <div class="form-group">
         <label for="searchInputLocation">Select a location:</label>
-        <select class="form-control" id="searchInputConsole">
-          <option>Select...</option>
+        <select class="form-control" form="search_form" name="location" id="locationSelector">
+          <option value="">Select...</option>
           {% for location in locations %}
-          <option>{{ location }}</option>
+          <option value="{{ location }}">{{ location }}</option>
           {% endfor %}
         </select>
       </div>
       <div class="form-group">
         <label for="searchInputConsole">Select a console:</label>
-        <select class="form-control" id="searchInputConsole">
-          <option>Select...</option>
+        <select class="form-control" form="search_form" name="platforms__name" id="platformSelector">
+          <option value="">Select...</option>
           {% for platform in platforms %}
-          <option>{{ platform }}</option>
+          <option value="{{ platform }}">{{ platform }}</option>
           {% endfor %}
         </select>
       </div>
       <div class="form-group">
         <label for="searchInputConsole">Select a game:</label>
-        <select class="form-control" id="searchInputConsole">
-          <option>Select...</option>
+        <select form="search_form" class="form-control" name="games__title" id="gameSelector">
+          <option value="">Select...</option>
           {% for game in games %}
-          <option>{{ game }}</option>
+          <option value="{{ game }}">{{ game }}</option>
           {% endfor %}
         </select>
       </div>

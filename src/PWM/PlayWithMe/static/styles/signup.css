@@ -1,0 +1,16 @@
+.animated {
+    background: url("/static/images/PlayWithMeLogo.png") repeat-x;
+    height: 2000px;
+    width: 1180px;
+    animation: slide 10s linear infinite
+    
+  }
+
+  @keyframes slide {
+    0% {
+      transform: translate3d(1100px, 50px, 0);
+    }
+    100% {
+      transform: translate3d(-1180px, 50px, 0);
+    }
+  }
