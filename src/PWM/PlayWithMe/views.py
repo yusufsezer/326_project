@@ -91,6 +91,23 @@ def signup(request):
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
 
-class SessionDetailView(generic.DetailView):
-    model = Session
-    template_name = "chat.html"
+def join_session(request, pk):
+    print("Joining group...");
+    profile = Profile.objects.get(user=request.user)
+    session = Session.objects.get(pk=pk)
+    profile.sessions.add(session)
+    session.profiles.add(profile)
+    return session_view(request, pk)
+
+
+def session_view(request, pk):
+    session = Session.objects.get(pk=pk)
+
+    context = {
+        "session": session
+    }
+    return render(request, "chat.html", context=context)
+
+# class SessionDetailView(generic.DetailView):
+#     model = Session
+#     template_name = "chat.html"

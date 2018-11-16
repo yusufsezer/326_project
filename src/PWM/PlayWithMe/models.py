@@ -100,6 +100,10 @@ class Session(models.Model):
         """Returns the url to access a detail record for this book."""
         return reverse("session", args=[str(self.pk)])
 
+    def get_join_url(self):
+        """Returns the url to access a detail record for this book."""
+        return reverse("join_session", args=[str(self.pk)])
+
     def __str__(self):
         """String for representing the Model object."""
         return self.name

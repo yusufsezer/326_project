@@ -37,7 +37,7 @@
           <td>{{ session.online }}</td>
           <td><div class="">
             <a href="{{session.get_absolute_url}}" class="btn btn-primary">VIEW</a>
-            <a href="{{session.get_absolute_url}}"><button type="button" class="btn btn-success" onclick="">JOIN </button></a></td>
+            <a href="{{session.get_join_url}}"><button type="button" class="btn btn-success" onclick="">JOIN </button></a></td>
           </div>
         </tr>
         {% endfor %}
