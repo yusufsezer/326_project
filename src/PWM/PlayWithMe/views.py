@@ -18,6 +18,8 @@ def search(request):
     platforms = Platform.objects.all()
     games = Game.objects.all()
     locations = set(session.location for session in Session.objects.all())
+    if "" in locations:
+        locations.remove("")
 
     context = {
         "platforms": platforms,
@@ -70,6 +72,8 @@ def post_session(request):
     platforms = Platform.objects.all()
     games = Game.objects.all()
     locations = set(session.location for session in Session.objects.all())
+    if "" in locations:
+        locations.remove("")
 
     context = {
         "platforms": platforms,
