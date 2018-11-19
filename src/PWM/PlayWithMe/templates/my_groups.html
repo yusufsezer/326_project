@@ -20,6 +20,7 @@
         <th>Location</th>
         <th>Platform</th>
         <th>Game</th>
+        <th>Online?</th>
         <th>View</th>
       </thead>
       <tbody>
@@ -30,9 +31,10 @@
           <td>{% for platform in session.platforms.all %}
                 {{platform}}<br>
                 {% endfor %}</td>
-                <td>{% for game in session.games.all %}
-                      {{game}}<br>
-                      {% endfor %}</td>
+          <td>{% for game in session.games.all %}
+                {{game}}<br>
+                {% endfor %}</td>
+          <td>{{ session.online }}</td>
           <td><a href="{{session.get_absolute_url}}" class="btn btn-primary">VIEW</a></td>
         </tr>
         {% endfor %}
