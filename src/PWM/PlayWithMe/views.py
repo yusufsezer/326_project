@@ -4,8 +4,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views import generic
 from PlayWithMe.models import Profile, Session, Platform, Game
+import uuid
 
-# Create your views here.
 def index(request):
     """View function for home page of site."""
     context = {}
@@ -44,17 +44,23 @@ def results(request):
     session_list = Session.objects.all()
     current_profile = Profile.objects.get(user=request.user)
     query_params = request.GET.dict()
-    to_pop=[]
+
+    # Delete query parameters that have value None or ""
+    to_pop = []
     for key in query_params:
         if not query_params[key]:
             to_pop.append(key)
     for key in to_pop:
         query_params.pop(key)
+
+    # Filter sessions by query parameters and pass the result to the context
     session_list = session_list.filter(**query_params)
     context = {
         "session_list": session_list,
         "current_profile": current_profile,
     }
+
+    # Render the results page
     return render(request, "results.html", context=context)
 
 
@@ -64,13 +70,14 @@ def post_session(request):
     platforms = Platform.objects.all()
     games = Game.objects.all()
     locations = set(session.location for session in Session.objects.all())
+
     context = {
         "platforms": platforms,
         "games": games,
         "locations": locations,
     }
 
-    # Render the HTML template index.html with the data in the context variable
+    # Render the post session page
     return render(request, "post_session_page.html", context=context)
 
 # Found this method here:
@@ -99,6 +106,69 @@ def join_session(request, pk):
     session.profiles.add(profile)
     return session_view(request, pk)
 
+# Handler for the submit button on the post session page's online tab
+def create_online_session(request):
+    print("Attempting to create online session...")
+    attributes = request.POST.dict()
+    attributes["owner"] = Profile.objects.get(user=request.user)
+    attributes["online"] = True
+
+    # Attempt to create session; if creation fails, redirect to post session page
+    try:
+        session = __create_session(attributes)
+    except:
+        print("Failed to create Session")
+        return post_session(request)
+
+    # Redirect the user to the session they just created
+    print(f"Created session {session.uuid}")
+    return session_view(request, session.pk)
+
+# Handler for the submit button on the post session page's local tab
+def create_local_session(request):
+    print("Attempting to create local session...")
+    attributes = request.POST.dict()
+    attributes["owner"] = Profile.objects.get(user=request.user)
+    attributes["online"] = False
+
+    # Attempt to create session; if creation fails, redirect to post session page
+    try:
+        session=__create_session(attributes)
+    except:
+        print("Failed to create Session")
+        return post_session(request)
+
+    # Redirect the user to the session they just created
+    print(f"Created session {session.uuid}")
+    return session_view(request, session.pk)
+
+# Utility function for creating Session objects
+def __create_session(attributes):
+    owner = attributes["owner"]
+    session = Session(
+        uuid=uuid.uuid4(),
+        name=attributes["name"],
+        owner=owner,
+        online=attributes["online"]
+    )
+    session.save()
+    session.profiles.add(owner)
+    # Add games if needed
+    if attributes["games"]:
+        games = Game.objects.get(title=attributes["games"])
+        session.games.add(games)
+    # Add platforms if needed
+    if attributes["platforms"]:
+        platforms = Platform.objects.get(name=attributes["platforms"])
+        session.platforms.add(platforms)
+    # Add location if local session
+    if "location" in attributes:
+        session.location = attributes["location"]
+    session.save()
+    owner.sessions.add(session)
+    owner.sessions_owned.add(session)
+    owner.save()
+    return session
 
 def session_view(request, pk):
     session = Session.objects.get(pk=pk)

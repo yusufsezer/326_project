@@ -16,70 +16,76 @@
       </ul>
   </div>
   <div class="tab-content card-body">
-    <div id="online" class="tab-pane active">
-        <h5 class="card-title text-center">Create an Online Session</h5>
-        <p class="card-text text-center">Customize the settings below to build your online gaming session!</p>
-        <div class="form-group">
-          <label for="sessionName1" style="display: flex">Session Name</label>
-          <input class="form-control" id="sessionName" placeholder="Enter session name">
+      <div id="online" class="tab-pane active">
+          <h5 class="card-title text-center">Create an Online Session</h5>
+          <p class="card-text text-center">Customize the settings below to build your online gaming session!</p>
+          <form action="/create_online_session/" method="post" id="online_session_form">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="sessionName1" style="display: flex">Session Name</label>
+              <input class="form-control" form="online_session_form" name="name" id="onlineSessionNameField" placeholder="Enter session name">
+            </div>
+            <div class="form-group">
+              <label for="inputConsole" style="display: flex">Select a console:</label>
+              <select class="form-control" form="online_session_form" name="platforms" id="onlinePlatformSelector">
+                <option value="">Select...</option>
+                {% for platform in platforms %}
+                <option value="{{ platform.name }}">{{ platform }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="inputGame" style="display: flex">Select a game:</label>
+              <select class="form-control" form="online_session_form" name="games" id="onlineGameSelector">
+                <option value="">Select...</option>
+                {% for game in games %}
+                <option value="{{ game.title }}">{{ game }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <button type="submit" form="online_session_form" class="btn btn-primary">Create Session</button>
+          </form>
         </div>
-        <div class="form-group">
-          <label for="inputConsole" style="display: flex">Select a console:</label>
-          <select class="form-control" id="inputConsole">
-            <option>Select...</option>
-            {% for platform in platforms %}
-            <option>{{ platform }}</option>
-            {% endfor %}
-          </select>
+        <div id="local" class="tab-pane">
+            <h5 class="card-title text-center">Create a Local Session</h5>
+            <p class="card-text text-center">Customize the settings below to build your local gaming session!</p>
+            <form action="/create_local_session/" method="post" id="local_session_form">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="sessionName1" style="display: flex">Session Name</label>
+                <input class="form-control" form="local_session_form" name="name" id="localSessionNameField" placeholder="Enter session name">
+              </div>
+              <div class="form-group">
+                <label for="searchInputLocation" style="display: flex">Select a location:</label>
+                <select class="form-control" form="local_session_form" name="location" id="localLocationSelector">
+                  <option value="">Select...</option>
+                  {% for location in locations %}
+                  <option value="{{ location }}">{{ location }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="inputConsole" style="display: flex">Select a console:</label>
+                <select class="form-control" form="local_session_form" name="platforms" id="localPlatformSelector">
+                  <option value="">Select...</option>
+                  {% for platform in platforms %}
+                  <option value="{{ platform.name }}">{{ platform }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="inputGame" style="display: flex">Select a game:</label>
+                <select class="form-control"fprm="local_session_form" name="games" id="localGameSelector">
+                  <option value="">Select...</option>
+                  {% for game in games %}
+                  <option value="{{ game.title }}">{{ game }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <button type="submit" form="local_session_form" class="btn btn-primary">Create Session</button>
+            </form>
         </div>
-        <div class="form-group">
-          <label for="inputGame" style="display: flex">Select a game:</label>
-          <select class="form-control" id="inputGame">
-            <option>Select...</option>
-            {% for game in games %}
-            <option>{{ game }}</option>
-            {% endfor %}
-          </select>
-        </div>
-        <a href="#" class="btn btn-primary" style="display: flex; width: 135px">Create Session</a>
-      </div>
-      <div id="local" class="tab-pane">
-          <h5 class="card-title text-center">Create a Local Session</h5>
-          <p class="card-text text-center">Customize the settings below to build your local gaming session!</p>
-          <div class="form-group">
-            <label for="sessionName1" style="display: flex">Session Name</label>
-            <input class="form-control" id="sessionName" placeholder="Enter session name">
-          </div>
-          <div class="form-group">
-            <label for="searchInputLocation" style="display: flex">Select a location:</label>
-            <select class="form-control" id="searchInputConsole">
-              <option>Select...</option>
-              {% for location in locations %}
-              <option>{{ location }}</option>
-              {% endfor %}
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="inputConsole" style="display: flex">Select a console:</label>
-            <select class="form-control" id="inputConsole">
-              <option>Select...</option>
-              {% for platform in platforms %}
-              <option>{{ platform }}</option>
-              {% endfor %}
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="inputGame" style="display: flex">Select a game:</label>
-            <select class="form-control" id="inputGame">
-              <option>Select...</option>
-              {% for game in games %}
-              <option>{{ game }}</option>
-              {% endfor %}
-            </select>
-          </div>
-          <a href="#" class="btn btn-primary" style="display: flex; width: 135px">Create Session</a>
-      </div>
-  </div>
+    </div>
 </div>
 
 {% endblock %}

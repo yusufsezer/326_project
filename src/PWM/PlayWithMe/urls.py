@@ -17,6 +17,8 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('session/<str:pk>', views.session_view, name='session'),
     path('join_session/<str:pk>', views.join_session, name='join_session'),
+    path('create_online_session/', views.create_online_session, name='create_online_session'),
+    path('create_local_session/', views.create_local_session, name='create_local_session'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
