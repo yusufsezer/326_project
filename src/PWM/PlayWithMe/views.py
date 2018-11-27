@@ -14,6 +14,10 @@ def index(request):
     # Render the HTML template index.html with the data in the context variable
     return render(request, "index.html", context=context)
 
+def about_us(request):
+    """View function for about page of site."""
+    return render(request, "about_us.html")
+
 def search(request):
     """View function for search page of site."""
     platforms = Platform.objects.all()
