@@ -31,7 +31,6 @@
                 </button>
 
                 <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
-                    {% if user.is_authenticated %}
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'create_group' %}">Create Group</a>
@@ -50,7 +49,6 @@
                             </div>
                         </li>
                     </ul>
-                    {% endif %}
                     {% if user.is_authenticated %}
                     <span class="navbar-text">Welcome, {{ user.get_username }}!</span>
                     <span class="nav-item">
