@@ -1,6 +1,7 @@
 from datetime import timedelta, date, datetime
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group, Permission
+from django.contrib.contenttypes.models import ContentType
 from django.utils import timezone
 from faker import Faker
 from PlayWithMe.models import Platform, Game, Profile, Message, Session
@@ -22,6 +23,15 @@ adminuser.is_staff = True
 adminuser.save()
 admin_profile = Profile(user=adminuser)
 admin_profile.save()
+
+# Setup moderator user
+username = "moderator"
+password = "moderator"
+email = "m@a.co"
+moderator_user = User.objects.create_user(username, email, password)
+moderator_user.save()
+moderator_profile = Profile(user=moderator_user)
+moderator_profile.save()
 
 # Create platforms
 platforms = [
@@ -60,6 +70,14 @@ for _ in range(10):
     )
     game.save()
     games.append(game)
+
+moderator_group, created = Group.objects.get_or_create(name='Moderator')
+ct = ContentType.objects.get_for_model(Profile)
+permission = Permission.objects.create(codename='can_delete_message',
+                                       name='Can delete message',
+                                       content_type=ct)
+moderator_group.permissions.add(permission)
+moderator_group.user_set.add(adminuser, moderator_user)  # can take arg for each user
 
 # Create and save Profile objects
 profiles = [admin_profile]

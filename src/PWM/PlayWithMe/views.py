@@ -110,7 +110,7 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 def join_session(request, pk):
-    print("Joining group...");
+    print("Joining group...")
     profile = Profile.objects.get(user=request.user)
     session = Session.objects.get(pk=pk)
     profile.sessions.add(session)
