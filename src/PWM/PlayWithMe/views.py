@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views import generic
-from PlayWithMe.models import Profile, Session, Platform, Game
+from PlayWithMe.models import Profile, Session, Platform, Game, Message
 import uuid
 
 def index(request):
@@ -190,6 +190,23 @@ def session_view(request, pk):
         "is_member": is_member,
     }
     return render(request, "chat.html", context=context)
+
+def send_chat_message(request):
+    """Handler for the chat page's send button"""
+    print("Attempting to send message...")
+    req_body = request.POST.dict()
+    session_pk = req_body["session"]
+    session = Session.objects.get(pk=session_pk)
+    text = req_body["text"][:100]
+    sender = Profile.objects.get(user=request.user)
+    message = Message(
+        text=text,
+        sender=sender,
+        context=session
+    )
+    message.save()
+
+    return session_view(request, session_pk)
 
 # class SessionDetailView(generic.DetailView):
 #     model = Session
