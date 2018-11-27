@@ -182,9 +182,11 @@ def __create_session(attributes):
 
 def session_view(request, pk):
     session = Session.objects.get(pk=pk)
+    profile = Profile.objects.get(user=request.user)
 
     context = {
-        "session": session
+        "session": session,
+        "profile": profile,
     }
     return render(request, "chat.html", context=context)
 
