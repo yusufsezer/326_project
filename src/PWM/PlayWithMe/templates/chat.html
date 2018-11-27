@@ -35,15 +35,30 @@
           <b>{{message.sender.user.username}}</b>
           <p>{{message.text}}</p>
           <span class="timeRight">{{ message.datetime }}</span>
-        </div>
+          {% if perms.PlayWithMe.can_delete_message %}
+            <form action="/delete_message/" method="post" id="message_delete_form" class="form-inline my-2 my-lg-0">
+              {% csrf_token %}
+            <button class="btn btn-failure" form="message_delete_form" type="submit">DELETE </button>
+            <input hidden=True name="message_pk" id="messagePK" value="{{ message.pk }}">
+            <input name="session_pk" id="sessionPK" value="{{ session.pk }}" hidden=True>
+            </form>
+          {% endif %}
       {% else %}
         <div class="block left">
             <img class="block-img" src="{% static 'images/chick.jpg' %}" alt={{message.sender}}>
             <b>{{message.sender.user.username}}</b>
             <p>{{message.text}}</p>
             <span class="timeRight">{{ message.datetime }}</span>
-        </div>
+            {% if perms.PlayWithMe.can_delete_message %}
+              <form action="/delete_message/" method="post" id="message_delete_form" class="form-inline my-2 my-lg-0">
+                {% csrf_token %}
+              <button class="btn btn-failure" form="message_delete_form" type="submit">DELETE </button>
+              <input hidden=True name="message_pk" id="messagePK" value="{{ message.pk }}">
+              <input name="session_pk" id="sessionPK" value="{{ session.pk }}" hidden=True>
+              </form>
+            {% endif %}
       {% endif %}
+      </div>
     {% endfor %}
   </div>
   <div>

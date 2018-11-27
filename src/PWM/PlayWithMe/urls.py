@@ -21,6 +21,7 @@ urlpatterns = [
     path('create_online_session/', views.create_online_session, name='create_online_session'),
     path('create_local_session/', views.create_local_session, name='create_local_session'),
     path('send_chat_message/', views.send_chat_message, name='send_chat_message'),
+    path('delete_message/', views.delete_message, name="delete_message")
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

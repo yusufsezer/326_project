@@ -215,6 +215,16 @@ def send_chat_message(request):
 
     return session_view(request, session_pk)
 
+def delete_message(request):
+    print("Attempting to delete message...")
+    print(request.POST.dict())
+    req_body = request.POST.dict()
+    message_pk = req_body["message_pk"]
+    session_pk = req_body["session_pk"]
+    message = Message.objects.get(pk=message_pk)
+    message.delete()
+    return session_view(request, session_pk)
+
 # class SessionDetailView(generic.DetailView):
 #     model = Session
 #     template_name = "chat.html"
