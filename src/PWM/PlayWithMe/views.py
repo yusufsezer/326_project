@@ -68,7 +68,7 @@ def results(request):
 
 
 def post_session(request):
-    """View function for events page of site."""
+    """View function for post session page of site."""
     platforms = Platform.objects.all()
     games = Game.objects.all()
     locations = set(session.location for session in Session.objects.all())
@@ -110,8 +110,8 @@ def join_session(request, pk):
     session.profiles.add(profile)
     return session_view(request, pk)
 
-# Handler for the submit button on the post session page's online tab
 def create_online_session(request):
+    """Handler function for the submit button on the post session page's online tab"""
     print("Attempting to create online session...")
     attributes = request.POST.dict()
     attributes["owner"] = Profile.objects.get(user=request.user)
@@ -128,8 +128,8 @@ def create_online_session(request):
     print(f"Created session {session.uuid}")
     return session_view(request, session.pk)
 
-# Handler for the submit button on the post session page's local tab
 def create_local_session(request):
+    """Handler function for the submit button on the post session page's local tab"""
     print("Attempting to create local session...")
     attributes = request.POST.dict()
     attributes["owner"] = Profile.objects.get(user=request.user)
@@ -146,8 +146,8 @@ def create_local_session(request):
     print(f"Created session {session.uuid}")
     return session_view(request, session.pk)
 
-# Utility function for creating Session objects
 def __create_session(attributes):
+    """Utility function for creating Session objects"""
     owner = attributes["owner"]
     session = Session(
         uuid=uuid.uuid4(),
@@ -156,22 +156,28 @@ def __create_session(attributes):
         online=attributes["online"]
     )
     session.save()
-    session.profiles.add(owner)
+
     # Add games if needed
     if attributes["games"]:
         games = Game.objects.get(title=attributes["games"])
         session.games.add(games)
+
     # Add platforms if needed
     if attributes["platforms"]:
         platforms = Platform.objects.get(name=attributes["platforms"])
         session.platforms.add(platforms)
+
     # Add location if local session
     if "location" in attributes:
         session.location = attributes["location"]
+
+    # Update the Session and owner's Profile objects as to reflect ownership
+    session.profiles.add(owner)
     session.save()
     owner.sessions.add(session)
     owner.sessions_owned.add(session)
     owner.save()
+
     return session
 
 def session_view(request, pk):
