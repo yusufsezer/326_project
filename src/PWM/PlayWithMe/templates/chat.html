@@ -25,6 +25,7 @@
     {% endfor %}
 
   </div>
+  {% if is_member %}
   <h2 style="align-self: center">Chat With Team:</h2>
   <div class="boxed card my-3" style="height: 400px; overflow-y: scroll;">
     {% for message in session.message_set.all %}
@@ -51,6 +52,7 @@
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Send</button>
       </form>
   </div>
+  {% endif %}
 </div>
 
 {% endblock %}

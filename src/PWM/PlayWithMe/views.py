@@ -183,10 +183,11 @@ def __create_session(attributes):
 def session_view(request, pk):
     session = Session.objects.get(pk=pk)
     profile = Profile.objects.get(user=request.user)
-
+    is_member = True if profile in session.profiles.all() else False
     context = {
         "session": session,
         "profile": profile,
+        "is_member": is_member,
     }
     return render(request, "chat.html", context=context)
 
