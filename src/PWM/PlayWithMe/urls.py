@@ -14,6 +14,7 @@ urlpatterns = [
     path('results/', views.results, name='search_results'),
     path('my_groups/', views.my_groups, name='my_groups'),
     path('post_session/', views.post_session, name='create_group'),
+    path('about_us/', views.about_us, name='about_us'),
     path('signup/', views.signup, name='signup'),
     path('session/<str:pk>', views.session_view, name='session'),
     path('join_session/<str:pk>', views.join_session, name='join_session'),
