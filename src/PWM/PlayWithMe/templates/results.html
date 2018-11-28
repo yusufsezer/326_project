@@ -36,8 +36,16 @@
                 {% endfor %}</td>
           <td>{{ session.online }}</td>
           <td><div class="">
+            {% if user.is_authenticated %}
             <a href="{{session.get_absolute_url}}" class="btn btn-primary">VIEW</a>
+            {% else %}
+            <a href="\signup" class="btn btn-primary">VIEW</a>
+            {% endif %}
+            {% if user.is_authenticated %}
             <a href="{{session.get_join_url}}"><button type="button" class="btn btn-success" onclick="">JOIN </button></a></td>
+            {% else %}
+            <a href="\signup"><button type="button" class="btn btn-success" onclick="">JOIN </button></a></td>
+            {% endif %}
           </div>
         </tr>
         {% endfor %}

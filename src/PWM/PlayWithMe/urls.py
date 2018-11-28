@@ -14,12 +14,14 @@ urlpatterns = [
     path('results/', views.results, name='search_results'),
     path('my_groups/', views.my_groups, name='my_groups'),
     path('post_session/', views.post_session, name='create_group'),
+    path('about_us/', views.about_us, name='about_us'),
     path('signup/', views.signup, name='signup'),
     path('session/<str:pk>', views.session_view, name='session'),
     path('join_session/<str:pk>', views.join_session, name='join_session'),
     path('create_online_session/', views.create_online_session, name='create_online_session'),
     path('create_local_session/', views.create_local_session, name='create_local_session'),
     path('send_chat_message/', views.send_chat_message, name='send_chat_message'),
+    path('delete_message/', views.delete_message, name="delete_message")
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

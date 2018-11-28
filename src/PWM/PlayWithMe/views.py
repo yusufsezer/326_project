@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views import generic
 from PlayWithMe.models import Profile, Session, Platform, Game, Message
+from django.contrib.auth.models import AnonymousUser
 import uuid
 
 def index(request):
@@ -12,6 +13,10 @@ def index(request):
 
     # Render the HTML template index.html with the data in the context variable
     return render(request, "index.html", context=context)
+
+def about_us(request):
+    """View function for about page of site."""
+    return render(request, "about_us.html")
 
 def search(request):
     """View function for search page of site."""
@@ -32,6 +37,8 @@ def search(request):
 
 def my_groups(request):
     """View function for results page of site."""
+    if not request.user.is_authenticated:
+        return signup(request)
     profile = Profile.objects.get(user=request.user)
     profile_groups = profile.sessions.all()
     num_groups = len(profile_groups)
@@ -44,7 +51,6 @@ def my_groups(request):
 def results(request):
     """View function for results page of site."""
     session_list = Session.objects.all()
-    current_profile = Profile.objects.get(user=request.user)
     query_params = request.GET.dict()
 
     # Delete query parameters that have value None or ""
@@ -59,7 +65,6 @@ def results(request):
     session_list = session_list.filter(**query_params)
     context = {
         "session_list": session_list,
-        "current_profile": current_profile,
     }
 
     # Render the results page
@@ -69,6 +74,8 @@ def results(request):
 
 def post_session(request):
     """View function for post session page of site."""
+    if not request.user.is_authenticated:
+        return signup(request)
     platforms = Platform.objects.all()
     games = Game.objects.all()
     locations = set(session.location for session in Session.objects.all())
@@ -103,7 +110,7 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 def join_session(request, pk):
-    print("Joining group...");
+    print("Joining group...")
     profile = Profile.objects.get(user=request.user)
     session = Session.objects.get(pk=pk)
     profile.sessions.add(session)
@@ -206,6 +213,16 @@ def send_chat_message(request):
     )
     message.save()
 
+    return session_view(request, session_pk)
+
+def delete_message(request):
+    print("Attempting to delete message...")
+    print(request.POST.dict())
+    req_body = request.POST.dict()
+    message_pk = req_body["message_pk"]
+    session_pk = req_body["session_pk"]
+    message = Message.objects.get(pk=message_pk)
+    message.delete()
     return session_view(request, session_pk)
 
 # class SessionDetailView(generic.DetailView):
