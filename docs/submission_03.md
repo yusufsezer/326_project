@@ -31,4 +31,4 @@ One of the main issues we ran into was unauthenticated users being able to inter
 * Only minor changes/polishes remain for final submission
 
 ### Team Choice
-TO-DO
+For our "team choice" goal, we would like to notify session owners via email when a user joins their session. We plan to use a python library to programmatically generate email notifications for session owners.
