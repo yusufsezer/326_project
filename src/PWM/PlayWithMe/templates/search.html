@@ -63,13 +63,17 @@
 
 {% block scripts %}
 <script type="text/javascript">
+let selected_location = 'Select...';
 $(document).ready(function() {
   $('input:radio[name=online]').change(function () {
     if (this.value == 'True') {
       $('#locationDiv').hide();
+      selected_location = $('#locationSelector').find(':selected').text();
+      $('#locationSelector option[value=""]').prop('selected', 'selected');
     }
     if (this.value == 'False') {
       $('#locationDiv').show();
+      $('#locationSelector option[value="' + selected_location + '"]').prop('selected', 'selected');
     }
   })
 })
