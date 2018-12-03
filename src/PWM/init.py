@@ -56,9 +56,24 @@ for platform in platforms:
     platform.save()
 
 # Create and save Game objects
+game_titles = [
+    'FIFA 2018',
+    'Fortnite',
+    'Minecraft',
+    'Rocket League',
+    'Call of Duty: Black Ops 4',
+    'Forza Horizon 4',
+    "Assasin's Creed Odyssey",
+    'Far Cry 5',
+    'Red Dead Redemption 2',
+    'Battlefield 5',
+    'Mario Kart 8',
+    'Just Dance 2019',
+    'Overwatch'
+]
 games = []
-for _ in range(10):
-    game_title = fake.text(30)
+for i in range(len(game_titles)):
+    game_title = game_titles[i]
     game_online = True
     game_description = fake.text(200)
     game_link = fake.text(50)
@@ -105,9 +120,21 @@ for _ in range(15):
 
 # Create and save Session objects
 sessions = []
-for i in range(10):
+session_names = [
+    'Elite Game Squad',
+    'Northeast Weekly Smash Meetup',
+    'Thursday Night Fortnite',
+    'Tilted Towers Only',
+    'Rocket League tryouts',
+    'Southwest Squad',
+    'UMass Minecraft server',
+    'Saturday FIFA tournaments',
+    'Casual just dancing :D',
+    'Overwatch 6v6s'
+]
+for i in range(len(session_names)):
     session_id = uuid.uuid4()
-    session_name = fake.text(50)
+    session_name = session_names[i]
     session_location = random.sample(locations, 1)[0]
     session_online = True if random.randint(0, 1) == 1 else 0
     session = Session(
