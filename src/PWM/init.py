@@ -135,8 +135,12 @@ session_names = [
 for i in range(len(session_names)):
     session_id = uuid.uuid4()
     session_name = session_names[i]
-    session_location = random.sample(locations, 1)[0]
-    session_online = True if random.randint(0, 1) == 1 else 0
+    if session_name is 'Northeast Weekly Smash Meetup':
+        session_location="Northeast"
+        session_online = False
+    else:
+        session_location = random.sample(locations, 1)[0]
+        session_online = True if random.randint(0, 1) == 1 else 0
     session = Session(
         uuid=session_id,
         name=session_name,
