@@ -69,7 +69,8 @@ game_titles = [
     'Battlefield 5',
     'Mario Kart 8',
     'Just Dance 2019',
-    'Overwatch'
+    'Overwatch',
+    'Super Smash Bros: Ultimate'
 ]
 games = []
 for i in range(len(game_titles)):
@@ -176,12 +177,15 @@ for session in sessions:
 
     num_platforms = random.randint(1, len(platforms))
     selected_platforms = random.sample(platforms, num_platforms)
-    for platform in selected_platforms:
-        session.platforms.add(platform)
     num_games = random.randint(1, len(games) - 1)
     selected_games = random.sample(games, num_games)
+    if session.name is "Northeast Weekly Smash Meetup":
+        selected_games = [Game.objects.get(title="Super Smash Bros: Ultimate")]
+        selected_platforms = [Platform.objects.get(name="Nintendo Switch")]
     for game in selected_games:
         session.games.add(game)
+    for platform in selected_platforms:
+        session.platforms.add(platform)
     session.save()
 
 # Create and save Message objects
