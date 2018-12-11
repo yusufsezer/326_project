@@ -9,7 +9,7 @@ Team Members: Navin Lal, Nithin Mahesh, Rudy Pikulik, Chris Rybiki, Panav Setia,
 User Interface:
 
 Sign Up - This page allows users to create an account.
-![Alt Text](/img/HomePage.PNG)
+![alt text](https://github.com/yusufsezer/PlayWithMe/blob/master/docs/imgs/HomePage.PNG?raw=true)
 
 Log In - This is the page where users must log into their account to access the multiple pages of our website.
 
