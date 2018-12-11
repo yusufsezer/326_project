@@ -21,55 +21,54 @@
   </head>
 
   <body class="bg-light">
-    <main role="main" class="container mb-3">
-        <div class="row">
-            <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-                <!-- <a class="navbar-brand" href="{% url 'index' %}">PlayWithMe</a> -->
-                <a href="{% url 'index' %}"><img src="{% static 'images/LogoWhite.png' %}" style="width: 130px; height: 27px; margin-top: 5px; margin-right: 5px"></a>
-                <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    <div class="row">
+        <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+            <!-- <a class="navbar-brand" href="{% url 'index' %}">PlayWithMe</a> -->
+            <a href="{% url 'index' %}"><img src="{% static 'images/LogoWhite.png' %}" style="width: 130px; height: 27px; margin-top: 5px; margin-right: 5px"></a>
+            <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'create_group' %}">Create Group</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'my_groups' %}">My Groups</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'find_group' %}">Find a Group</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'about_us' %}">About Us</a>
-                        </li>
-                    </ul>
-                    {% if user.is_authenticated %}
-                    <span class="navbar-text">Welcome, {{ user.get_username }}!</span>
-                    <span class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-                    </span>
-                    {% else %}
-                    <span class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">Login</a>
-                    </span>
-                    <span class="nav-item">
-                        <a class="nav-link" href="{% url 'signup'%}">Sign up</a>
-                    </span>
-                    {% endif %}
-                    </span>
-                </div>
-            </nav>
-        </div>
-        <p> </p>
-        <p> </p>
-        <p> </p>
+            <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'create_group' %}">Create Group</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'my_groups' %}">My Groups</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'find_group' %}">Find a Group</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about_us' %}">About Us</a>
+                    </li>
+                </ul>
+                {% if user.is_authenticated %}
+                <span class="navbar-text">Welcome, {{ user.get_username }}!</span>
+                <span class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </span>
+                {% else %}
+                <span class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </span>
+                <span class="nav-item">
+                    <a class="nav-link" href="{% url 'signup'%}">Sign up</a>
+                </span>
+                {% endif %}
+                </span>
+            </div>
+        </nav>
+    </div>
 
+    {% block main %}
+    {% endblock %}
+
+    <div class="container">
         {% block content %}
         {% endblock %}
-
-    </main>
+    </div>
 
     {% block footer %}
     {% endblock %}

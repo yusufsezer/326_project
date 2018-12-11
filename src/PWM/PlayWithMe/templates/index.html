@@ -6,79 +6,83 @@
 <link href="{% static 'styles/index.css' %}" rel="stylesheet">
 {% endblock %}
 
-{% block content %}
-<div class="row top-buffer"></div>
-<div style="display: flex; justify-content: center">
-    <img src="{% static 'images/PlayWithMeLogo.png' %}" style="width: 560px; height: 120px; margin-bottom: 20px">
-</div>
-<div class="row">
-    <div class="col-md-6">
-        <div class="card text-white bg-dark mb-3">
-            <div class="card-body">
-                <h3 class="card-title" style="text-align: center;">Local</h3>
-                <p class="card-text">Find people playing near you and meet up with to play and connect with each other!</p>
-                <div class="button-container">
-                    <a href="{% url 'search_results' %}" class="btn btn-primary">Join a Local Party</a>
+{% block main %}
+<div class="call-to-action">
+    <div class="blur">
+    <div class="container">
+        <div class="row">
+            <div class="pt-4 text-center">
+                <img src="{% static 'images/PlayWithMeLogoWhiteShadow.png' %}" style="width: 50%;">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card text-white bg-dark mb-3">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Local</h3>
+                        <p class="card-text">Find people playing near you and meet up to connect and play!</p>
+                        <a href="{% url 'search_results' %}" class="btn btn-primary">Join a Local Party</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card text-white bg-dark mb-3">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Online</h3>
+                        <p class="card-text">Find people playing online and join their party to play together!</p>
+                        <a href="{% url 'search_results' %}" class="btn btn-primary">Join an Online Party</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="card text-white bg-dark mb-3">
-            <div class="card-body">
-                <h3 class="card-title" style="text-align: center;">Online</h3>
-                <p class="card-text">Find people playing online and join their online party to play with them!</p>
-                <div class="button-container">
-                    <a href="{% url 'search_results' %}" class="btn btn-primary">Join an Online Party</a>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 
-<div class="row" id="second-buffer"></div>
-<div class="row">
-    <div class="col-sm-12" id="news">
-        <h2>What's New:</h2>
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-sm-12" id="news">
+            <h2>What's New:</h2>
+        </div>
     </div>
-</div>
-<div class="row top-buffer"></div>
-<div class="row">
-    <div class="col-md-4">
-        <div class="card second-row-cards">
-            <div class="card-body">
-                <div class="card-img">
-                    <img class="clsimage" src="{% static 'images/sf5.jpg' %}">
-                </div>
-                <div class="pic-contents">
-                    <p class="card-title second-name">Street Fighter V</p>
-                    <p class="card-text second-description">Street Fighter V is a fighting video game developed by Capcom and Dimps. The game was released in February 2016 for the PlayStation 4 and Microsoft Windows. The game features cross-platform play between the PlayStation 4 and Windows versions.</p>
+    <div class="row mt-4"></div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card second-row-cards">
+                <div class="card-body">
+                    <p class="card-title second-name text-center">Street Fighter V</p>
+                    <div class="card-img">
+                        <img class="clsimage" src="{% static 'images/sf5.jpg' %}">
+                    </div>
+                    <div class="pic-contents">
+                        <p class="card-text second-description">Street Fighter V is a fighting video game developed by Capcom and Dimps. The game was released in February 2016 for the PlayStation 4 and Microsoft Windows. The game features cross-platform play between the PlayStation 4 and Windows versions.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card second-row-cards">
-            <div class="card-body">
-                <div class="card-img">
-                    <img class="clsimage" src="{% static 'images/smash5.png' %}">
-                </div>
-                <div class="pic-contents">
-                    <p class="card-title second-name">Smash Bros Ultimate</p>
-                    <p class="card-text second-description">Super Smash Bros. Ultimate is an upcoming crossover fighting game developed by Bandai Namco Studios and Sora Ltd. and published by Nintendo for the Nintendo Switch. It is the fifth installment in the Super Smash Bros. series, succeeding Super Smash Bros. for Nintendo 3DS and Wii U.</p>
+        <div class="col-md-4">
+            <div class="card second-row-cards">
+                <div class="card-body">
+                    <p class="card-title text-center second-name">Smash Bros Ultimate</p>
+                    <div class="card-img">
+                        <img class="clsimage" src="{% static 'images/smash5.png' %}">
+                    </div>
+                    <div class="pic-contents">
+                        <p class="card-text second-description">Super Smash Bros. Ultimate is an upcoming crossover fighting game developed by Bandai Namco Studios and Sora Ltd. and published by Nintendo for the Nintendo Switch. It is the fifth installment in the Super Smash Bros. series, succeeding Super Smash Bros. for Nintendo 3DS and Wii U.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card second-row-cards">
-            <div class="card-body">
-                <div class="card-img">
-                    <img class="clsimage" src="{% static 'images/call-of-duty-black-ops-4.png' %}">
-                </div>
-                <div class="pic-contents">
-                    <p class="card-title second-name">Black Ops 4</p>
-                    <p class="card-text second-description">Call of Duty: Black Ops 4 is an upcoming multiplayer first-person shooter developed by Treyarch and published by Activision. It is scheduled to be released worldwide on October 12, 2018, for Microsoft Windows, PlayStation 4 and Xbox One.</p>
+        <div class="col-md-4">
+            <div class="card second-row-cards">
+                <div class="card-body">
+                    <p class="card-title text-center second-name">Black Ops 4</p>
+                    <div class="card-img">
+                        <img class="clsimage" src="{% static 'images/call-of-duty-black-ops-4.png' %}">
+                    </div>
+                    <div class="pic-contents">
+                        <p class="card-text second-description">Call of Duty: Black Ops 4 is an upcoming multiplayer first-person shooter developed by Treyarch and published by Activision. It is scheduled to be released worldwide on October 12, 2018, for Microsoft Windows, PlayStation 4 and Xbox One.</p>
+                    </div>
                 </div>
             </div>
         </div>
