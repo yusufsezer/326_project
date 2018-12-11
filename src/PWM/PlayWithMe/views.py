@@ -1,10 +1,13 @@
+from django.core.exceptions import ValidationError
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views import generic
 from PlayWithMe.models import Profile, Session, Platform, Game, Message
 from django.contrib.auth.models import AnonymousUser
+from django import forms
 import uuid
 
 def index(request):
@@ -91,22 +94,62 @@ def post_session(request):
     # Render the post session page
     return render(request, "post_session_page.html", context=context)
 
+# Found this class here:
+# https://overiq.com/django-1-10/django-creating-users-using-usercreationform/
+class CustomUserCreationForm(forms.Form):
+    username = forms.CharField(label='Enter Username', min_length=4, max_length=150)
+    email = forms.EmailField(label='Enter email')
+    password1 = forms.CharField(label='Enter password', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput)
+
+    def clean_username(self):
+        username = self.cleaned_data['username'].lower()
+        r = User.objects.filter(username=username)
+        if r.count():
+            raise  ValidationError("Username already exists")
+        return username
+
+    def clean_email(self):
+        email = self.cleaned_data['email'].lower()
+        r = User.objects.filter(email=email)
+        if r.count():
+            raise  ValidationError("Email already exists")
+        return email
+
+    def clean_password2(self):
+        password1 = self.cleaned_data.get('password1')
+        password2 = self.cleaned_data.get('password2')
+
+        if password1 and password2 and password1 != password2:
+            raise ValidationError("Password don't match")
+
+        return password2
+
+    def save(self, commit=True):
+        user = User.objects.create_user(
+            self.cleaned_data['username'],
+            self.cleaned_data['email'],
+            self.cleaned_data['password1']
+        )
+        return user
+
 # Found this method here:
 # https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
+            email = form.cleaned_data.get('email')
+            user = authenticate(username=username, password=raw_password, email=email)
             login(request, user)
             new_profile = Profile(user=user)
             new_profile.save()
             return redirect("index")
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
     return render(request, 'signup.html', {'form': form})
 
 def join_session(request, pk):
