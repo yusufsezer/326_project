@@ -98,12 +98,12 @@ def post_session(request):
 # https://overiq.com/django-1-10/django-creating-users-using-usercreationform/
 class CustomUserCreationForm(forms.Form):
     username = forms.CharField(label='Enter Username', min_length=4, max_length=150)
-    email = forms.EmailField(label='Enter email')
-    password1 = forms.CharField(label='Enter password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput)
+    email = forms.EmailField(label='Enter email', blank=True)
+    password1 = forms.CharField(label='Enter password', min_length=6, widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Confirm password', min_length=6, widget=forms.PasswordInput)
 
     def clean_username(self):
-        username = self.cleaned_data['username'].lower()
+        username = self.cleaned_data['username']
         r = User.objects.filter(username=username)
         if r.count():
             raise  ValidationError("Username already exists")
