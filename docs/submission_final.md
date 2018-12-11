@@ -9,7 +9,7 @@ Team Members: Navin Lal, Nithin Mahesh, Rudy Pikulik, Chris Rybiki, Panav Setia,
 User Interface:
 
 Sign Up - This page allows users to create an account.
-![GitHub Logo](/imgs/HomePage.png)
+![GitHub Logo](/imgs/HomePage.PNG)
 
 Log In - This is the page where users must log into their account to access the multiple pages of our website.
 
