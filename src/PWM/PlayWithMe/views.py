@@ -2,6 +2,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.core.mail import send_mail, EmailMessage
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views import generic
@@ -155,6 +156,24 @@ def join_session(request, pk):
     session = Session.objects.get(pk=pk)
     profile.sessions.add(session)
     session.profiles.add(profile)
+    owner_name = session.owner.user.username
+    username = profile.user.username
+    recipient_email = session.owner.user.email
+    print("Recipient email: ", recipient_email)
+
+    # Send email notification to owner about new session member if possible
+    if recipient_email:
+        email_content =   """Hello {},\n
+                    We just wanted to let you know that {} joined your session titled: {}\n
+                    Thanks,\n
+                    The PlayWithMe Team""".format(owner_name, username, session.name)
+        msg = EmailMessage(
+            "Someone joined your PlayWithMe session!",
+            email_content,
+            to=[recipient_email]
+        )
+        resp = msg.send()
+        print("Email sent? (1 == success, 0 == failure): ", resp)
     return session_view(request, pk)
 
 def create_online_session(request):
@@ -264,7 +283,3 @@ def delete_message(request):
     message = Message.objects.get(pk=message_pk)
     message.delete()
     return session_view(request, session_pk)
-
-# class SessionDetailView(generic.DetailView):
-#     model = Session
-#     template_name = "chat.html"
