@@ -5,6 +5,13 @@ Subtitle: PlayWithMe
 Semester: Fall 2018  
 Team Members: Navin Lal, Nithin Mahesh, Rudy Pikulik, Chris Rybiki, Panav Setia, Yusuf Sezer  
 
+## Overview:
+
+PlayWithMe is an online web platform that allows its users to find or create groups for gaming. Our users will be able to log in to our website and create gaming sessions that allows users to join and communicate with the rest of the group. In addition to creating a group, a user will also be able to login and search for a group to join. PlayWithMe brings all kinds of gamers together allowing collaboration between people across campuses.
+
+Currently the gaming industry has platforms such as Steam, Playstation Network, and Xbox Live. Our platform however, compared to the competition, is currently centered around the UMass Campus. Since we were focused on creating an application for avid gamers within a college campus our application is it’s own standalone entity unlike other platforms currently available. 
+
+No other gaming platform at the moment connects players with not only games, but incorporates a facebook messenger like chat system to communicate more efficiently and get to gaming! 
 
 ### User Interface:  
 
@@ -51,7 +58,7 @@ Our data model as it stands has six major components: games, platforms, sessions
 
 Games are simple items that contain basic information like a name, the platforms it can be played on, as well as a description. Platforms (like Playstation, PC, etc.) can each be associated with one or more games.
 
-Users can sign up for an account on our website, storing a username and passoword. Each user is associated with a Profiel which can  be used to host and find groups and message other people. Each profile (with a username and password) is associated with 0 or more sessions that they are a member of, and zero or more sessions that they are the owner of. Profiles can also add information about which games they play and what game platforms they use.
+Users can sign up for an account on our website, storing a username and passoword. Each user is associated with a Profile which can  be used to host and find groups and message other people. Each profile (with a username and password) is associated with 0 or more sessions that they are a member of, and zero or more sessions that they are the owner of. Profiles can also add information about which games they play and what game platforms they use.
 
 Sessions are each assigned a unique ID, and are associated with 1 or more profiles, of which one of is the owner. A session also has one or more games and one or more platforms associated with it. Lastly, each session is associated with messages sent between members, and a sessioncan have a location associated with, as well as a boolean indicating if the members are playing online or offline games.
 
