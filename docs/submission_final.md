@@ -3,19 +3,21 @@
 Title: RudyOnRails  
 Subtitle: PlayWithMe  
 Semester: Fall 2018  
-Team Members: Navin Lal, Nithin Mahesh, Rudy Pikulik, Chris Rybiki, Panav Setia, Yusuf Sezer  
+Team Members: Navin Lal, Nithin Mahesh, Rudy Pikulik, Chris Rybicki, Panav Setia, Yusuf Sezer  
+
+## Special Grading Instructions for Instructor/TA(s)
+
+As part of our team goal for the final submission, we make calls to Sendgrid's API to programmatically generate and send emails. For security reasons, we did not push the API key to the project's public repository. You can find the API key in the team's Slack channel (Team G - RudyOnRails). In prder for the email functionality to work, please set the EMAIL_HOST_PASSWORD variable (at the bottom of the settings.py file) to equal the API key.
 
 ## Overview:
 
 PlayWithMe is an online web platform that allows its users to find or create groups for gaming. Our users will be able to log in to our website and create gaming sessions that allows users to join and communicate with the rest of the group. In addition to creating a group, a user will also be able to login and search for a group to join. PlayWithMe brings all kinds of gamers together allowing collaboration between people across campuses.
 
-Currently the gaming industry has platforms such as Steam, Playstation Network, and Xbox Live. Our platform however, compared to the competition, is currently centered around the UMass Campus. Since we were focused on creating an application for avid gamers within a college campus our application is it’s own standalone entity unlike other platforms currently available. 
+Currently the gaming industry has platforms such as Steam, Playstation Network, and Xbox Live. Our platform however, compared to the competition, is currently centered around the UMass Campus. Since we were focused on creating an application for avid gamers within a college campus our application is it’s own standalone entity unlike other platforms currently available.
 
-No other gaming platform at the moment connects players with not only games, but incorporates a facebook messenger like chat system to communicate more efficiently and get to gaming! 
+No other gaming platform at the moment connects players with not only games, but incorporates a facebook messenger like chat system to communicate more efficiently and get to gaming!
 
 ### User Interface:
-
-Api Key - We used Sendgrid to programmatically send emails. For security reasons, the corresponding API key is not pushed to the public repository. Please find the API key in Team G's slack channel (Team RudyOnRails) and insert it at the bottom of the settings.py file.
 
 Sign Up - This page allows users to create an account.
 
@@ -53,16 +55,16 @@ About Us - This page gives a brief description of the PlayWithMe team and shows 
 
 ![alt text](https://github.com/yusufsezer/PlayWithMe/blob/master/docs/imgs/AboutUs326.png?raw=true)
 
- 
+
 ### Data Model:  
 
-Our data model as it stands has six major components: games, platforms, sessions, django users, messages, and profiles.
+Our data model as it stands has six major components: games, platforms, sessions, Django users, messages, and profiles.
 
 Games are simple items that contain basic information like a name, the platforms it can be played on, as well as a description. Platforms (like Playstation, PC, etc.) can each be associated with one or more games.
 
-Users can sign up for an account on our website, storing a username and passoword. Each user is associated with a Profile which can  be used to host and find groups and message other people. Each profile (with a username and password) is associated with 0 or more sessions that they are a member of, and zero or more sessions that they are the owner of. Profiles can also add information about which games they play and what game platforms they use.
+Users can sign up for an account on our website, storing a username and password. Each user is associated with a Profile which can be used to host and find groups and message other people. Each profile (with a username and password) is associated with 0 or more sessions that they are a member of, and zero or more sessions that they are the owner of. Profiles can also add information about which games they play and what game platforms they use.
 
-Sessions are each assigned a unique ID, and are associated with 1 or more profiles, of which one of is the owner. A session also has one or more games and one or more platforms associated with it. Lastly, each session is associated with messages sent between members, and a sessioncan have a location associated with, as well as a boolean indicating if the members are playing online or offline games.
+Sessions are each assigned a unique ID, and are associated with 1 or more profiles, of which one is the session owner. A session also has one or more games and one or more platforms associated with it. Lastly, each session is associated with messages sent between members, an optional session location, as well as a boolean indicating if the members are playing online or offline games.
 
 Finally, messages are simple data items that are associated with a sender (profile), one or more receivers (profile), and the time the message was sent.
 
@@ -76,7 +78,7 @@ No Path - Leads to our home page. This website shows users our “What’s New�
 
 /accounts/login - This directs the user to the login page.  
 
-/search - this page, accessible to anyone is our find a group page. From here users can search for sessions.  
+/search - this page, accessible to anyone, is our find a group page. From here users can search for sessions.  
 
 /results/?query=result - this page shows the user their search results. This is also accessible to anyone.  
 
@@ -98,8 +100,8 @@ We also added separate logic to ensure the app's behavior was consistent accordi
 
 ### Team Choice
 
-The team choice component of our final submission was to notify session owners by email when someone joins their group. This did not require any other url mapping or UI view but instead the use of Django’s emailing client and some backend code to send the email at the proper time with the proper text.
+The team choice component of our final submission was to notify session owners by email when someone joins their group. This did not require any other url mapping or UI view but instead the use of Django’s emailing client as well as the Sendgrid API.
 
 ### Conclusion
 
-Throughout working on this project, our entire team learned full stack web development using html, bootstrap, django, and other associated technologies. We, as a team, learned how to implement and manage user auth and interaction to allow controlled interaction of users and our application. In addition to that, we learned to develop software as a team using version control systems such as git. Some difficulties we encountered had to do with debugging with limited knowledge of Django and its objects. Some things we would have liked to know beforehand would be more about data model design as we ended up implementing ours incorrectly and later forced to change our data model. Something else would be knowing more about user authentication, specifically using django’s User model. One last thing we would have liked to know was django’s block structure for reuse instead of having to copy and paste.
+Over the course of the project, our entire team learned full stack web development using HTML, Bootstrap, Django, and other associated technologies. We, as a team, learned how to implement and manage user authentication and interaction to allow controlled interaction of users and our application. In addition to that, we learned to develop software as a team using version control systems such as git. Some difficulties we encountered had to do with debugging with limited knowledge of Django and its objects. Some things we would have liked to know beforehand would be more about data model design as we ended up implementing ours incorrectly and later forced to change our data model. Something else would be knowing more about user authentication, specifically using Django’s User model. One last thing we would have liked to know was Django’s block structure for reuse instead of having to copy and paste.
