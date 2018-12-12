@@ -1,12 +1,12 @@
 ### Final Team Submission
 
-Title: RudyOnRails
-Subtitle: PlayWithMe
-Semester: Fall 2018
-Team Members: Navin Lal, Nithin Mahesh, Rudy Pikulik, Chris Rybiki, Panav Setia, Yusuf Sezer
+Title: RudyOnRails  
+Subtitle: PlayWithMe  
+Semester: Fall 2018  
+Team Members: Navin Lal, Nithin Mahesh, Rudy Pikulik, Chris Rybiki, Panav Setia, Yusuf Sezer  
 
 
-User Interface:
+### User Interface:  
 
 Sign Up - This page allows users to create an account.
 
@@ -45,3 +45,52 @@ About Us - This page gives a brief description of the PlayWithMe team and shows 
 ![alt text](https://github.com/yusufsezer/PlayWithMe/blob/master/docs/imgs/AboutUs326.png?raw=true)
 
  
+### Data Model:  
+
+Our data model as it stands has six major components: games, platforms, sessions, django users, messages, and profiles.
+
+Games are simple items that contain basic information like a name, the platforms it can be played on, as well as a description. Platforms (like Playstation, PC, etc.) can each be associated with one or more games.
+
+Users can sign up for an account on our website, storing a username and passoword. Each user is associated with a Profiel which can  be used to host and find groups and message other people. Each profile (with a username and password) is associated with 0 or more sessions that they are a member of, and zero or more sessions that they are the owner of. Profiles can also add information about which games they play and what game platforms they use.
+
+Sessions are each assigned a unique ID, and are associated with 1 or more profiles, of which one of is the owner. A session also has one or more games and one or more platforms associated with it. Lastly, each session is associated with messages sent between members, and a sessioncan have a location associated with, as well as a boolean indicating if the members are playing online or offline games.
+
+Finally, messages are simple data items that are associated with a sender (profile), one or more receivers (profile), and the time the message was sent.
+
+![alt text](https://github.com/yusufsezer/PlayWithMe/blob/master/docs/imgs/DataModel.png?raw=true)  
+
+### URL Mappings/Paths  
+
+No Path - Leads to our home page. This website shows users our “What’s New” section and allows all users to access the find a group page. If the user is not logged in, then trying to access any other page will redirect the user to our sign up page.  
+
+/signup - This leads to the signup page which allows users to create an account.  
+
+/accounts/login - This directs the user to the login page.  
+
+/search - this page, accessible to anyone is our find a group page. From here users can search for sessions.  
+
+/results/?query=result - this page shows the user their search results. This is also accessible to anyone.  
+
+/session/[session#] - This page does require a user to be logged in and shows the Session View of the selected group that the user is either viewing or joining.  
+
+/post_session - This path takes the user to the Create A Group page only if the user is logged in.  
+
+/my_groups - This path takes the user to the My Groups page only if the user is logged in.  
+
+/about_us - This path takes the user to the About Us page and can be viewed by anyone.  
+
+### Authentication
+
+User authentication can take place on the sign-up (/signup) and login (/accounts/login) pages. The user authentication process is built on top of the Django authentication modules (django.contrib.auth), which are used with other modules to give users permissions based on their role. Other modules (django.contrib.sessions.middleware.SessionMiddleware, django.contrib.auth.middleware.AuthenticationMiddleware) are used to ensure users stay logged in during a continuous browsing session.
+
+We developed the user authentication in Django by creating a one-to-one mapping between Django User objects and our data model's Profile objects. By doing so, the information of users is automatically obscured in the admin panel, so even as developers we cannot see the passwords or credentials of user accounts. The login page used the form of Django’s token authentication to provide the functionality. View classes can then provide a direct instance given a request from the database.
+
+We also added separate logic to ensure the app's behavior was consistent according to the user's logged in status. This ensures users who are logged out cannot create groups or interact with parts of the website that only logged in users should be able to access. This is all dependent on the user authentication system.
+
+### Team Choice
+
+The team choice component of our final submission was to notify session owners by email when someone joins their group. This did not require any other url mapping or UI view but instead the use of Django’s emailing client and some backend code to send the email at the proper time with the proper text.
+
+### Conclusion
+
+Throughout working on this project, our entire team learned full stack web development using html, bootstrap, django, and other associated technologies. We, as a team, learned how to implement and manage user auth and interaction to allow controlled interaction of users and our application. In addition to that, we learned to develop software as a team using version control systems such as git. Some difficulties we encountered had to do with debugging with limited knowledge of Django and its objects. Some things we would have liked to know beforehand would be more about data model design as we ended up implementing ours incorrectly and later forced to change our data model. Something else would be knowing more about user authentication, specifically using django’s User model. One last thing we would have liked to know was django’s block structure for reuse instead of having to copy and paste.
