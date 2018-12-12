@@ -13,7 +13,9 @@ Currently the gaming industry has platforms such as Steam, Playstation Network, 
 
 No other gaming platform at the moment connects players with not only games, but incorporates a facebook messenger like chat system to communicate more efficiently and get to gaming! 
 
-### User Interface:  
+### User Interface:
+
+Api Key - We used Sendgrid to programmatically send emails. For security reasons, the corresponding API key is not pushed to the public repository. Please find the API key in Team G's slack channel (Team RudyOnRails) and insert it at the bottom of the settings.py file.
 
 Sign Up - This page allows users to create an account.
 
